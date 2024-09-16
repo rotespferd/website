@@ -1,4 +1,27 @@
 baseURL = 'https://www.marianhahne.de'
 languageCode = 'de-de'
+DefaultContentLanguage = "de"
 title = 'Marians Blog'
 theme = 'ananke'
+
+[params]
+  text_color = ""
+  author = "Marian Hahne"
+  favicon = ""
+  site_logo = ""
+  description = "Gedanken über Technik, Politik und dem ganzen Rest."
+  # choose a background color from any on this page: https://tachyons.io/docs/themes/skins/ and preface it with "bg-"
+  background_color_class = "bg-black"
+  recent_posts_number = 3
+
+[[params.ananke_socials]]
+name = "mastodon"
+url = "https://nrw.social/@rotespferd"
+
+[[params.ananke_socials]]
+name = "github"
+url = "https://github.com/rotespferd"
+
+[[params.ananke_socials]]
+name = "codeberg"
+url = "https://codeberg.org/rotespferd"
