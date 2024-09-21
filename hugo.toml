@@ -76,14 +76,14 @@ tocopen = false
   hiddenInSingle = true
 
 [[menu.main]]
-identifier = "categories"
-name = "categories"
-url = "/categories/"
+identifier = "archiv"
+name = "Archiv"
+url = "/archiv/"
 weight = 10
 
 [[menu.main]]
 identifier = "tags"
-name = "tags"
+name = "Themen"
 url = "/tags/"
 weight = 20
 
