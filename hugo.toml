@@ -76,22 +76,28 @@ tocopen = false
   hiddenInSingle = true
 
 [[menu.main]]
+identifier = "ueber-mich"
+name = "Über mich"
+url = "/ueber-mich/"
+weight = 10
+
+[[menu.main]]
 identifier = "archiv"
 name = "Archiv"
 url = "/archiv/"
-weight = 10
+weight = 20
 
 [[menu.main]]
 identifier = "tags"
 name = "Themen"
 url = "/tags/"
-weight = 20
-
-[[menu.main]]
-identifier = "example"
-name = "example.org"
-url = "https://example.org"
 weight = 30
+
+#[[menu.main]]
+#identifier = "example"
+#name = "example.org"
+#url = "https://example.org"
+#weight = 30
 
 [markup.highlight]
 noClasses = false
