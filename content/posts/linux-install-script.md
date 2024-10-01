@@ -1,7 +1,7 @@
 +++
 title = 'Mein Linux Install-Script'
 date = 2024-10-01T16:15:23+02:00
-draft = true
+draft = false
 tags = ['linux', 'fedora', 'bash']
 +++
 Ich habe ine gewagte These: viele IT-affine Linux-User kenne und leben das Phänomen des "Distro-Hoppings": auf Grund der [schieren Auswahl](https://distrowatch.com/) an möglichen Linux-Distributionen probiert man, gerade am Anfang seiner Linux-Karriere, viele Distros aus, bis man seine Lieblingsdistro gefunden hat.
