@@ -1,7 +1,7 @@
 baseURL = "https://www.marianhahne.de/"
 title = "Marians Blog"
 paginate = 5
-theme = "PaperMod"
+theme = ["PaperMod", "hugo-shortcode-gallery"]
 enableRobotsTXT = true
 buildDrafts = false
 buildFuture = false
@@ -71,9 +71,9 @@ tocopen = false
   url = "https://www.linkedin.com/in/marian-hahne-a531b8106/"
 
   [params.cover]
-  hidden = true
-  hiddenInList = true
-  hiddenInSingle = true
+  hidden = false
+  hiddenInList = false
+  hiddenInSingle = false
 
 [[menu.main]]
 identifier = "ueber-mich"
@@ -101,3 +101,6 @@ weight = 30
 
 [markup.highlight]
 noClasses = false
+
+[imaging.exif]
+includeFields = ".*"
