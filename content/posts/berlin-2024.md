@@ -1,7 +1,7 @@
 ---
 title: "Berlin 2024"
 date: 2024-10-05T13:33:02+02:00
-draft: true
+draft: false
 tags: ['bilder', 'reise']
 
 

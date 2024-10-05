@@ -82,6 +82,12 @@ url = "/ueber-mich/"
 weight = 10
 
 [[menu.main]]
+identifier = "bilder"
+name = "Bilder"
+url = "/tags/bilder/"
+weight = 12
+
+[[menu.main]]
 identifier = "archiv"
 name = "Archiv"
 url = "/archiv/"
