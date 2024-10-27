@@ -1,7 +1,6 @@
 +++
 title = 'Links KW43/2024'
 date = 2024-10-27T12:15:49+02:00
-draft = true
 tags = ['links der woche', 'linktipps']
 +++
 
