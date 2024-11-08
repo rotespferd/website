@@ -6,7 +6,7 @@ jobs:
     container:
       image: fedora:41
     steps:
-      - uses: rotespferd/website@main
+      - uses: https://codeberg.org/rotespferd/website@main
       - run: dnf install -y hugo
       - run: hugo version
       - run: pwd
