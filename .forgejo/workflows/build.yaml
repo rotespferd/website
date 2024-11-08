@@ -1,7 +1,11 @@
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: docker
+    container:
+      image: fedora:41
     steps:
-      - run: echo All Good
+      - run: dnf install hugo
+      - run: hugo version
+      - run: hugo
