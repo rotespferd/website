@@ -6,6 +6,6 @@ jobs:
     container:
       image: fedora:41
     steps:
-      - run: dnf install hugo
+      - run: dnf install -y hugo
       - run: hugo version
       - run: hugo
