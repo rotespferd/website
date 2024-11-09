@@ -8,6 +8,7 @@ jobs:
     steps:
       - run: dnf install -y git nodejs curl wget
       - uses: actions/checkout@v3
+      - run: git submodule update --init --recursive
       - run: dnf install -y hugo
       - run: hugo version
       - run: pwd
