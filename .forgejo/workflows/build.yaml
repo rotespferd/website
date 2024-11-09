@@ -6,9 +6,10 @@ jobs:
     container:
       image: fedora:41
     steps:
-      - run: dnf install -y git nodejs curl wget
+      - run: dnf install -y git nodejs curl wget git-lfs
       - uses: actions/checkout@v3
       - run: git submodule update --init --recursive
+      - run: git lfs pull
       - run: dnf install -y hugo
       - run: hugo version
       - run: pwd
