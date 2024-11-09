@@ -6,7 +6,6 @@ jobs:
     container:
       image: fedora:41
     steps:
-      - run: echo ${{ github.repository }}
       - uses: actions/checkout@v3
       - run: dnf install -y hugo
       - run: hugo version
