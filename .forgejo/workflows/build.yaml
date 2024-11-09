@@ -6,6 +6,7 @@ jobs:
     container:
       image: fedora:41
     steps:
+      - run: dnf install -y git nodejs curl wget
       - uses: actions/checkout@v3
       - run: dnf install -y hugo
       - run: hugo version
