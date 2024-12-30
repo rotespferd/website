@@ -13,6 +13,13 @@ Politik spielt in meinem Leben seit über 15 Jahren eine wichtige Rolle. Insbeso
 
 Als Themen sind mir sozialer Ausgleich, Solidarität, Gerechtigkeit, Digitalisierung und Bürgerrechte wichtig.
 
+## Mitgliedschaften
+In den folgenden Vereinen und Organisationen bin ich Mitglied:
+- Sozialdemokratische Partei Deutschland (SPD)
+- Vereinigte Dienstleistungsgewerkschaft (ver.di)
+- Bund für Umwelt und Naturschutz Deutschland (BUND)
+- Codeberg e.V.
+
 ## Projekte und Beiträge
 Anbei eine Liste von aktuellen, eigenen Projekten oder Beiträgen zu fremden Projekten.
 
