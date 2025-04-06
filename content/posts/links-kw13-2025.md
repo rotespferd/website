@@ -9,7 +9,7 @@ draft = false
 Meine Linksammlung der Woche 13/2025:
 
 ### https://thomashunter.name/posts/2025-03-23-post-apocalyptic-computing
-Sammlung von Ideen, wie ein Computer aussehen müsste, der auch in 100 Jahren noch funktioniert. Mit einem solchen Computer soll man dann auch in der Apokalypse überstehen. ALs Aufhänger dient die Serie "Silo", welche wirklich empfehlenswert ist.
+Sammlung von Ideen, wie ein Computer aussehen müsste, der auch in 100 Jahren noch funktioniert. Mit einem solchen Computer soll man dann auch in der Apokalypse überstehen. Als Aufhänger dient die Serie "Silo", welche wirklich empfehlenswert ist.
 
 ### https://www.jeffgeerling.com/blog/2025/i-wont-connect-my-dishwasher-your-stupid-cloud
 Jeff Geerling brauchte eine neue Spülmaschine. Leider funktioniert sein neues Modell nur mit allen Funktionen, wenn man es ins WLAN lässt und über die CLoud steuert. Eine Einblick in eine "smarte" Welt, die manchmal auch gerne etwas dümmer seien könnte.

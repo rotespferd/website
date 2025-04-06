@@ -4,7 +4,7 @@ draft = false
 +++
 Software-Entwicklung, gerade im Web-Kontext, ist eine meiner großen Leidenschaften. Angefangen habe ich mit PHP und selbstgebauten Website, vertieft habe ich das Wissen dann im CMS-Bereich mit TYPO3 und Symfony.
 
-Tagsüber arbeite ich als Software-Entwickler an der Universität Paderborn am Paderborn Center for Parallel Computing (PC²). Hier baue ich Plattformen, damit Forschende unsere Supercomputer noch leichter und intuitiver nutzen können.
+Tagsüber arbeite ich als Software-Entwickler an der Universität Paderborn am [Paderborn Center for Parallel Computing](https://pc2.uni-paderborn.de/) (PC²). Hier baue ich Plattformen, damit Forschende unsere Supercomputer noch leichter und intuitiver nutzen können.
 
 In meinem Feierabend baue ich an meinem Smart-Home weiter und lerne Elixir und Rust.
 
