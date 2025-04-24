@@ -1,6 +1,6 @@
 baseURL = "https://www.marianhahne.de/"
 title = "Marians Blog"
-paginate = 5
+pagination.pagerSize = 5
 theme = ["PaperMod", "hugo-shortcode-gallery"]
 enableRobotsTXT = true
 buildDrafts = false
