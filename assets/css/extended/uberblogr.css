@@ -1,0 +1,14 @@
+.uberblogr {
+    text-align: center;
+
+    margin: 10px auto;
+}
+
+.uberblogr a {
+    font-size: 14px;
+}
+
+.uberblogr a.uberblogr-arrow {
+    font-size: 20px;
+    line-height: 1.2;
+}
