@@ -2,7 +2,7 @@
 title = 'ChatGPT und das Problem mit dem Zählen'
 date = 2024-09-25T18:20:06+02:00
 draft = false
-tags = ['chatgpt', 'llm']
+tags = ['chatgpt', 'llm', 'ai']
 +++
 
 Einer der gerne genutzten Beispiele um darzustellen, das LLMs ja ach so "dumm" sind, ist das Zählen von Buchstaben oder Teilen einer Liste.
