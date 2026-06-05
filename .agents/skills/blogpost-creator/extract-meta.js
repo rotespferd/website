@@ -1,145 +1,157 @@
 #!/usr/bin/env node
 
-/**
- * Extract title and publication date from HTML HEAD section
- * Usage: node scripts/extract-meta.js <url>
- * Example: node scripts/extract-meta.js https://www.tigrisdata.com/blog/storage-sdk/
- */
+const http = require("http");
+const https = require("https");
 
-import https from 'https';
-import http from 'http';
-import { JSDOM } from 'jsdom';
+const MAX_REDIRECTS = 5;
 
-// Function to fetch HTML content
-function fetchHTML(url) {
+function fetchHTML(url, redirects = 0) {
   return new Promise((resolve, reject) => {
-    const client = url.startsWith('https:') ? https : http;
+    const parsed = new URL(url);
+    const client = parsed.protocol === "https:" ? https : http;
 
-    const request = client.get(url, (response) => {
-      let html = '';
+    const request = client.get(parsed, (response) => {
+      const location = response.headers.location;
 
-      // Handle redirects
-      if (response.statusCode >= 300 && response.statusCode < 400 && response.headers.location) {
-        return fetchHTML(response.headers.location).then(resolve).catch(reject);
+      if (response.statusCode >= 300 && response.statusCode < 400 && location) {
+        if (redirects >= MAX_REDIRECTS) {
+          reject(new Error("Too many redirects"));
+          return;
+        }
+
+        const nextUrl = new URL(location, parsed).toString();
+        response.resume();
+        fetchHTML(nextUrl, redirects + 1).then(resolve, reject);
+        return;
       }
 
-      response.setEncoding('utf8');
-      response.on('data', (chunk) => {
+      if (response.statusCode < 200 || response.statusCode >= 300) {
+        response.resume();
+        reject(new Error(`HTTP ${response.statusCode}: ${response.statusMessage}`));
+        return;
+      }
+
+      let html = "";
+      response.setEncoding("utf8");
+      response.on("data", (chunk) => {
         html += chunk;
       });
-
-      response.on('end', () => {
-        if (response.statusCode >= 200 && response.statusCode < 300) {
-          resolve(html);
-        } else {
-          reject(new Error(`HTTP ${response.statusCode}: ${response.statusMessage}`));
-        }
+      response.on("end", () => {
+        resolve({ html, finalUrl: parsed.toString() });
       });
     });
 
-    request.on('error', (err) => {
-      reject(err);
-    });
-
+    request.on("error", reject);
     request.setTimeout(10000, () => {
-      request.destroy();
-      reject(new Error('Request timeout'));
+      request.destroy(new Error("Request timeout"));
     });
   });
 }
 
-// Function to extract publication date from various meta tags
-function extractPublicationDate(document) {
-  const dateSelectors = [
-    'meta[property="article:published_time"]',
-    'meta[property="article:published"]',
-    'meta[name="article:published_time"]',
-    'meta[name="publication_date"]',
-    'meta[name="date"]',
-    'meta[property="datePublished"]',
-    'meta[name="DC.date"]',
-    'meta[name="DC.date.created"]',
-    'time[datetime]'
+function decodeEntities(value) {
+  return value
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&apos;/g, "'")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .trim();
+}
+
+function getAttr(tag, name) {
+  const pattern = new RegExp(`${name}\\s*=\\s*(["'])(.*?)\\1`, "i");
+  return tag.match(pattern)?.[2] || "";
+}
+
+function metaContent(html, selectorName, selectorValue) {
+  const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
+
+  for (const tag of metaTags) {
+    const value = getAttr(tag, selectorName);
+    if (value.toLowerCase() === selectorValue.toLowerCase()) {
+      const content = getAttr(tag, "content");
+      if (content) {
+        return decodeEntities(content);
+      }
+    }
+  }
+
+  return "";
+}
+
+function extractTitle(html) {
+  return (
+    metaContent(html, "property", "og:title") ||
+    metaContent(html, "name", "twitter:title") ||
+    decodeEntities(html.match(/<title\b[^>]*>([\s\S]*?)<\/title>/i)?.[1] || "")
+  );
+}
+
+function extractDescription(html) {
+  return (
+    metaContent(html, "property", "og:description") ||
+    metaContent(html, "name", "description") ||
+    metaContent(html, "name", "twitter:description")
+  );
+}
+
+function parseDate(value) {
+  if (!value) {
+    return null;
+  }
+
+  const date = new Date(value);
+  if (!Number.isNaN(date.getTime())) {
+    return date.toISOString().slice(0, 10);
+  }
+
+  return value.match(/\d{4}-\d{2}-\d{2}/)?.[0] || null;
+}
+
+function extractPublicationDate(html, url) {
+  const candidates = [
+    metaContent(html, "property", "article:published_time"),
+    metaContent(html, "property", "article:published"),
+    metaContent(html, "name", "article:published_time"),
+    metaContent(html, "name", "publication_date"),
+    metaContent(html, "name", "date"),
+    metaContent(html, "property", "datePublished"),
+    metaContent(html, "name", "DC.date"),
+    metaContent(html, "name", "DC.date.created"),
+    getAttr(html.match(/<time\b[^>]*datetime=["'][^"']+["'][^>]*>/i)?.[0] || "", "datetime"),
+    url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//)?.slice(1).join("-"),
   ];
 
-  for (const selector of dateSelectors) {
-    const element = document.querySelector(selector);
-    if (element) {
-      const date = element.getAttribute('content') || element.getAttribute('datetime');
-      if (date) {
-        return parseDate(date);
-      }
+  for (const candidate of candidates) {
+    const parsed = parseDate(candidate);
+    if (parsed) {
+      return parsed;
     }
   }
 
   return null;
 }
 
-// Function to parse and normalize date
-function parseDate(dateString) {
-  try {
-    // Handle ISO 8601 dates
-    if (dateString.includes('T') || dateString.includes('Z')) {
-      const date = new Date(dateString);
-      if (!isNaN(date.getTime())) {
-        return date.toISOString().split('T')[0]; // Return YYYY-MM-DD
-      }
-    }
-
-    // Handle various date formats
-    const date = new Date(dateString);
-    if (!isNaN(date.getTime())) {
-      return date.toISOString().split('T')[0];
-    }
-
-    // Try to extract date from string patterns
-    const dateMatch = dateString.match(/(\d{4})-(\d{2})-(\d{2})/);
-    if (dateMatch) {
-      return dateMatch[0];
-    }
-
-    return dateString; // Return original if parsing fails
-  } catch (error) {
-    console.warn(`Failed to parse date: ${dateString}`, error.message);
-    return dateString;
-  }
-}
-
-// Main function
 async function main() {
   const url = process.argv[2];
 
   if (!url) {
-    console.error('Usage: node extract-meta.js <url>');
-    console.error('Example: node extract-meta.js https://www.tigrisdata.com/blog/storage-sdk/');
+    console.error("Usage: node .agents/skills/blogpost-creator/extract-meta.js <url>");
     process.exit(1);
   }
 
   try {
-    console.log(`Fetching: ${url}`);
-    const html = await fetchHTML(url);
-
-    const dom = new JSDOM(html);
-    const document = dom.window.document;
-
-    // Extract title
-    const title = document.querySelector('title')?.textContent?.trim() || '';
-
-    // Extract Open Graph title as fallback
-    const ogTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content')?.trim() || '';
-
-    // Extract publication date
-    const publicationDate = extractPublicationDate(document);
-
-    // Output results as JSON
+    const { html, finalUrl } = await fetchHTML(url);
     const result = {
       url,
-      title: title || ogTitle,
-      publicationDate
+      finalUrl,
+      title: extractTitle(html),
+      description: extractDescription(html),
+      publicationDate: extractPublicationDate(html, finalUrl),
     };
 
     console.log(JSON.stringify(result, null, 2));
-
   } catch (error) {
     console.error(`Error: ${error.message}`);
     process.exit(1);
