@@ -3,15 +3,13 @@ on: [push]
 jobs:
   build:
     runs-on: docker
-    container:
-      image: fedora:44
     steps:
       - uses: actions/checkout@v3
-      - run: dnf install -y hugo
+      - run: apt install -y hugo
       - run: hugo
       - name: Deploy to uber.space
         run: |
-          dnf install -y openssh-clients rsync
+          apt install -y openssh-clients rsync
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
