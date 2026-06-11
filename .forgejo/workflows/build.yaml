@@ -5,11 +5,15 @@ jobs:
     runs-on: docker
     steps:
       - uses: actions/checkout@v3
-      - run: apt install -y hugo
+      - name: Install Hugo
+        run: |
+          HUGO_VERSION=$(curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | grep -oP '"tag_name": "\K[^"]+' | sed 's/v//')
+          curl -sL "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_${HUGO_VERSION}_linux-amd64.tar.gz" -o hugo.tar.gz
+          tar -xzf hugo.tar.gz hugo
+          sudo mv hugo /usr/local/bin/
       - run: hugo
       - name: Deploy to uber.space
         run: |
-          apt install -y openssh-clients rsync
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
