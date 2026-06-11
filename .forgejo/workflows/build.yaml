@@ -23,4 +23,4 @@ jobs:
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan marian.uber.space >> ~/.ssh/known_hosts
-          rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" public/ marian@marian.uber.space:/
+          rsync -avz --delete -e "ssh -i ~/.ssh/deploy_key" public/ marian@marian.uber.space:
