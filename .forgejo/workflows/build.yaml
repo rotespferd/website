@@ -4,8 +4,8 @@ jobs:
   build:
     runs-on: docker
     steps:
-      - name: Install git-lfs
-        run: apt-get update -qq && apt-get install -y git-lfs
+      - name: Install dependencies
+        run: apt-get update -qq && apt-get install -y git-lfs rsync
       - uses: actions/checkout@v3
         with:
           submodules: recursive
