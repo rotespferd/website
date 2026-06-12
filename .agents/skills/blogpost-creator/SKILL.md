@@ -126,12 +126,28 @@ For leaf bundles with colocated images, use `content/posts/<slug>/index.md` and 
 7. Create the Markdown file with TOML front matter and German body text or placeholders that match the requested post.
 8. Run `hugo` after creating or changing content and report whether it passed.
 
-## Optional Link Metadata Helper
+## Quick Start: Weekly Links Post
 
-For link recommendations or weekly link items, `.agents/skills/blogpost-creator/extract-meta.js` can fetch a URL title and publication date:
+Get current week and year:
 
 ```bash
-node .agents/skills/blogpost-creator/extract-meta.js <url>
+date +"%V %Y"
 ```
 
-Treat this as a convenience only. The helper does not create posts and may need local Node dependencies. Do not add redirect front matter; linked articles belong in normal Markdown prose.
+Fetch title/date for each link before writing its blurb:
+
+```bash
+node .claude/skills/blogpost-creator/extract-meta.js <url>
+```
+
+Create the file at `content/posts/links-kw<week>-<year>.md`, run `hugo` to validate.
+
+## Link Metadata Helper
+
+`.claude/skills/blogpost-creator/extract-meta.js` fetches a URL's title and publication date from its HTML meta tags. Output is JSON with `title`, `description`, and `publicationDate`.
+
+```bash
+node .claude/skills/blogpost-creator/extract-meta.js https://example.com/article
+```
+
+Use the title and description as context when writing the German blurb — do not copy them verbatim. The helper requires Node.js (no extra dependencies).
