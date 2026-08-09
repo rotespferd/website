@@ -56,7 +56,7 @@ Gerade wenn es um das Finden und Beheben von Sicherheitslücken geht kann ein LL
 
 Für Angreifer gehören LLMs schon jetzt fest ins Repotoiure der Angriffs-Werkzeuge. Sie finden Lücken viel besser als Menschen, weil sie nicht müde werden und viel mehr Rechenpower darauf werden können. Die Angriffswege zu diesen Lücken liefern sie dann häufig noch frei Haus.
 
-Viele Open-Source-Projekte haben Probleme, überhaupt noch zu patchen, da sie nicht genug Maintainer haben. Bug-Reports, die durch oder mit LLMs gefunden werden, überlasten das System noch weiter. TODO: hier Links und Satz zum CURL-Maintainer einfügen.
+Viele Open-Source-Projekte haben Probleme, überhaupt noch zu patchen, da sie nicht genug Maintainer haben. Bug-Reports, die durch oder mit LLMs gefunden werden, überlasten das System noch weiter. curl-Maintainer Daniel Stenberg hat genau das in seinem Blogpost ["The end of the curl bug-bounty"](https://daniel.haxx.se/blog/2026/01/26/the-end-of-the-curl-bug-bounty/) beschrieben: Die Quote bestätigter Schwachstellen unter den eingereichten Reports fiel 2025 auf unter 5%, weil das Bugbounty-Programm mit KI-generiertem "Slop" überflutet wurde, bis das Team die Geldprämien komplett strich. Bemerkenswert ist der Effekt, den er in seinem Folgepost ["High-Quality Chaos"](https://daniel.haxx.se/blog/2026/04/22/high-quality-chaos/) beschreibt: Ohne Geldprämie kamen zwar etwa doppelt so viele Reports wie 2025, die Bestätigungsquote stieg aber auf 15-16%. Fast jeder Report wirkt weiterhin KI-unterstützt, nur eben deutlich sorgfältiger.
 
 @DrWhax fasst es überspitzt so zusammen:
 
