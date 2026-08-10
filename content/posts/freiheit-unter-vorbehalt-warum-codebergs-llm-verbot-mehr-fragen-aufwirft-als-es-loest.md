@@ -66,6 +66,16 @@ Ein LLM-Verbot bedeutet also nicht nur "kein Vibe Coding", sondern auch, dass Si
 
 Was bringt uns Open-Source-Software, die ohne LLM-Nutzung nicht gefundene oder nicht gehobene Sicherheitslücken hat? Man fühlt sich dann vielleicht im "moralischen Highground", gefährdet aber seine Nutzer speziellen und der Sache der Open-Source-Bewegung im allgemeinen.
 
+## Die Sache mit der Freiheit
+
+Das bringt mich zum Titel dieses Beitrags. Mein Verständnis von Freiheit orientiert sich an einem Satz, der gerne Voltaire zugeschrieben wird, tatsächlich aber von seiner Biografin Evelyn Beatrice Hall stammt:
+
+> Ich bin zwar anderer Meinung als Sie, aber ich würde mein Leben dafür geben, dass Sie Ihre Meinung frei aussprechen dürfen.
+
+Übertragen auf dieses Thema heißt das: Ich muss LLM-gestütztes Arbeiten nicht gutheißen, um es zu tolerieren, genauso wenig, wie ich eine Meinung teilen muss, um für das Recht zu kämpfen, sie zu äußern. Die Freiheit, mit welchen Werkzeugen ich Code schreibe, sollte nicht dort enden, wo sie jemandem moralisch missfällt, sondern erst dort, wo sie anderen tatsächlich schadet, etwa durch überlastete Infrastruktur. Genau das ist der Vorbehalt im Titel dieses Beitrags: Freiheit ist nicht grenzenlos, aber die Grenze sollte am Schaden liegen, nicht an der Frage, ob einem ein Werkzeug gefällt.
+
+Natürlich kann man entgegnen: LLMs schaden unserer Umwelt und auch unserer Gesellschaft. Ich denke aber, dass das nicht LLM-imanent ist. Ich kann mir eine Welt vorstellen, in der wir KIs mit Solar- oder Windenergie und nur freiem oder lizensiertem Material tranieren. Nur, weil es heute noch nicht gemacht wurde heißt ja nicht, das es nicht geht.
+
 ## Wieso verlasse ich nun aber Codeberg?
 "Put your money where your mouth is". Worte müssen auch Taten folgen. Auch wenn es mir schwer fällt, die guten Ziele von Codeberg nicht mehr finanziell zu unterstützen, so fühle ich mich aktuell bei Codeberg fehl am Platz. Meine eigene Einstellung zu LLMs scheint mit der Mehrheit der Vereinsmitglieder nicht mehr übereinzustimmen. Da der Verein die Plattform maßgeblich gestaltet hat diese Meinungsverschiedenheit auch eine Auswirkung auf meine Nutzung.
 
