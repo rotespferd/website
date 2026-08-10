@@ -15,12 +15,9 @@ Nach langem Überlegen bin ich deshalb zu dem Entschluss gekommen, meine Förder
 ## Kritik an LLM berechtigt — aber zu eindimensional
 Die Kritik an LLM ist legitim, aber die aktuelle Form ist zu eindimensional. In einem [vorherigen Blogpost](/posts/industrialisierung-der-softwareentwicklung/#warum-ich-trotzdem-mitmache) habe ich meine Bedenken bereits zum Ausdruck gebracht. LLMs birgen große Risiken für unser Zusammenleben in der Gesellschaft. Auch ihre Auswirkungen auf die Kunst und Kultur sind bedenklich. Die Macht, die große Tech-Konzerne haben, ist bedenklich und gefährdet unsere Demokratie. Die Auswirkungen auf die Umwelt, die durch das Training und das Betreiben der LLMs entstehen, müssen scharf beobachtet werden. LLMs mit Atom- oder Gasstrom zu betreiben bringt uns nur tiefer in die Klimakrise.
 
-Der Geist ist aber nun mal aus der Flasche, wir werden LLMs nicht mehr wegbekommen. Ein kritischer Umgang mit LLMs ist notwendig - aber das ist etwas anderes als ein pauschales Verbot.
+Der Geist ist aber nun mal aus der Flasche: Gesellschaftlich werden wir LLMs nicht mehr los, so sehr sich das einige wünschen mögen. Eine pauschale Ablehnung bringt uns deshalb nicht weiter. Notwendig ist ein kritischer Umgang, der sich mit den Systemen auseinandersetzt und argumentativ austauscht, statt sie zu verdrängen.
 
-Außerdem gilt, was der Philosoph Theodor W. Adorno bereits gesagt hat:
-> Es gibt kein richtiges Leben im falschen.
-
-Wir leben in einer Welt, in der es LLMs gibt. Wir als Gesellschaft müssen uns damit beschäftigen und eine kritischen Umgang finden. Dies kann nur gelingen, wenn wir uns mit den Systemen beschäftigen und uns argumentiv dazu austauschen.
+Das ist eine Aussage über die gesellschaftliche Debatte im Allgemeinen. Ob Codebergs deutlich engere, plattformspezifische Regel deshalb sinnvoll ist, ist eine andere Frage - die verhandle ich in den folgenden Abschnitten separat.
 
 ## Tribalismus
 Im Diskurs zu LLM-generierten Code nehme ich eine immer stärkere Lagerbildung war, sei es nun im privaten, beruflichen oder open-source Kontext. Es entsteht ein Wir-gegen-Die-Denken, bei der es scheinbar nur zwei Pole gibt, die sich fast schon feindlich gegenüberstehen. Wie auch im allgemeinen politischen Diskurs gibt es kein Grau mehr, nur Schwarz oder Weiß. So verhärten sich die Lager und eine Diskussion ist nicht mehr möglich.
@@ -36,6 +33,7 @@ Ein Argument, das mir seit der Entscheidung immer wieder begegnet: Das sei doch 
 Codeberg wird von einer Vielzahl an Nutzer:innen verwendet, weit über den Kreis der Vereinsmitglieder hinaus. Abgestimmt haben aber nur diese, und davon auch nur etwa die Hälfte. Am Ende haben also gut 500 Menschen eine Regel beschlossen, die für alle gilt. Wenige entscheiden über viele.
 
 Mitglied werden kann grundsätzlich jeder. Aber genau das nehme ich als Ausrede wahr, wenn es um eine derart grundlegende Entscheidung geht. Bei einer Änderung, die direkt in die Nutzung der Plattform eingreift, hätte ich mir eine Rückkopplung an die gesamte Community gewünscht, ein RFC, eine offene Diskussion, eine Umfrage unter allen Nutzer:innen. Stattdessen wurde intern entschieden, was für alle gilt.
+Außerdem kann auch nicht jede:r Mitglied werden: vielleicht ist ihm:ihr die Mitgliedschaft zu teuer. Oder der Prozess ist zu aufwendig.
 
 ## Ressourcenschutz - aber für alle gleich
 
@@ -43,7 +41,9 @@ Ein Argument aus der Codeberg-Diskussion halte ich für absolut berechtigt: Der 
 
 Zu viele oder zu schnelle Pushes, exzessive Zugriffe, eine Flut an automatisiert erzeugten Issues, all das belastet eine Infrastruktur, die niemand kommerziell querfinanziert. Wer hier über die Stränge schlägt, verhält sich rücksichtslos gegenüber den Menschen, die diesen Dienst am Laufen halten.
 
-Nur: Diese Belastung hat nichts mit LLMs zu tun. Sie entsteht durch Verhalten, nicht durch das Werkzeug, mit dem der Code entstanden ist. Ein Script, das im Minutentakt pusht, überlastet die Server genauso, ob dahinter ein Mensch mit LLM, ein Mensch ohne LLM oder ein Bot ohne jede Code-Erzeugung steckt. Eine Regel, die Ressourcen schützen will, muss deshalb für alle gelten, unabhängig davon, ob jemand LLM-affin ist oder nicht.
+Nur: Diese Belastung hat erstmal nichts mit LLMs zu tun. Sie entsteht durch Verhalten, nicht durch das Werkzeug, mit dem der Code entstanden ist. Ein Script, das im Minutentakt pusht, überlastet die Server genauso, ob dahinter ein Mensch mit LLM, ein Mensch ohne LLM oder ein Bot ohne jede Code-Erzeugung steckt. Eine Regel, die Ressourcen schützen will, muss deshalb für alle gelten, unabhängig davon, ob jemand LLM-affin ist oder nicht.
+
+Hervorzuheben bleibt aber auch, dass gerade "vibe-coding" zu einer großen Belastung von Plattformen führt. Aber ich kann auch mit LLMs coden, ohne meine Forge zu überlasten.
 
 Was es dafür braucht, ist keine Regel gegen ein bestimmtes Werkzeug, sondern eine gute, transparente Metrik: Wie viele Pushes pro Stunde sind noch vertretbar, wie viele erstellte Issues, wie viele Requests pro Minute. Eine Grenze, an der sich alle messen lassen müssen, gleich womit sie ihren Code schreiben.
 
@@ -62,7 +62,7 @@ Viele Open-Source-Projekte haben Probleme, überhaupt noch zu patchen, da sie ni
 
 > I think outright not running an LLM over your codebase to find critical security vulnerabilities because of your moral stance will keep us more insecure.
 
-Ein LLM-Verbot bedeutet also nicht nur "kein Vibe Coding", sondern auch, dass Sicherheitslücken unentdeckt bleiben können. LLMs können gerade bei kritischer, internet-facing Infrastruktur ein Werkzeug für *mehr* Sicherheit sein.
+Ein ablehnende Haltung gegenüber LLMs bedeutet also nicht nur "kein Vibe Coding", sondern auch, dass Sicherheitslücken unentdeckt bleiben können. LLMs können gerade bei kritischer, internet-facing Infrastruktur ein Werkzeug für *mehr* Sicherheit sein.
 
 Was bringt uns Open-Source-Software, die ohne LLM-Nutzung nicht gefundene oder nicht gehobene Sicherheitslücken hat? Man fühlt sich dann vielleicht im "moralischen Highground", gefährdet aber seine Nutzer speziellen und der Sache der Open-Source-Bewegung im allgemeinen.
 
@@ -74,10 +74,10 @@ Das bringt mich zum Titel dieses Beitrags. Mein Verständnis von Freiheit orient
 
 Übertragen auf dieses Thema heißt das: Ich muss LLM-gestütztes Arbeiten nicht gutheißen, um es zu tolerieren, genauso wenig, wie ich eine Meinung teilen muss, um für das Recht zu kämpfen, sie zu äußern. Die Freiheit, mit welchen Werkzeugen ich Code schreibe, sollte nicht dort enden, wo sie jemandem moralisch missfällt, sondern erst dort, wo sie anderen tatsächlich schadet, etwa durch überlastete Infrastruktur. Genau das ist der Vorbehalt im Titel dieses Beitrags: Freiheit ist nicht grenzenlos, aber die Grenze sollte am Schaden liegen, nicht an der Frage, ob einem ein Werkzeug gefällt.
 
-Natürlich kann man entgegnen: LLMs schaden unserer Umwelt und auch unserer Gesellschaft. Ich denke aber, dass das nicht LLM-imanent ist. Ich kann mir eine Welt vorstellen, in der wir KIs mit Solar- oder Windenergie und nur freiem oder lizensiertem Material tranieren. Nur, weil es heute noch nicht gemacht wurde heißt ja nicht, das es nicht geht.
+Natürlich kann man entgegnen: LLMs schaden unserer Umwelt und auch unserer Gesellschaft, und zwar schon heute, nicht nur hypothetisch. Nach meinem eigenen Maßstab müsste das eigentlich zählen. Nur: Ein Verbot auf einer einzelnen Plattform wie Codeberg ändert daran nichts. Wer LLMs nutzen will, nutzt sie einfach woanders, der Ressourcenverbrauch sinkt dadurch nicht. Wenn der Schaden das eigentliche Problem ist, muss die Antwort bei Energiepolitik und Regulierung ansetzen, nicht beim Ausschluss einzelner Nutzer:innen von einer Forge.
 
 ## Wieso verlasse ich nun aber Codeberg?
-"Put your money where your mouth is". Worte müssen auch Taten folgen. Auch wenn es mir schwer fällt, die guten Ziele von Codeberg nicht mehr finanziell zu unterstützen, so fühle ich mich aktuell bei Codeberg fehl am Platz. Meine eigene Einstellung zu LLMs scheint mit der Mehrheit der Vereinsmitglieder nicht mehr übereinzustimmen. Da der Verein die Plattform maßgeblich gestaltet hat diese Meinungsverschiedenheit auch eine Auswirkung auf meine Nutzung.
+"Put your money where your mouth is". Worte müssen auch Taten folgen. Auch wenn es mir schwer fällt, die guten Ziele von Codeberg nicht mehr finanziell zu unterstützen, so fühle ich mich aktuell bei Codeberg fehl am Platz. Meine eigene Einstellung zu LLMs scheint mit der Mehrheit der Vereinsmitglieder nicht mehr übereinzustimmen. Da der Verein die Plattform maßgeblich gestaltet hat diese Meinungsverschiedenheit auch eine Auswirkung auf meine Nutzung. Das mag nach genau dem Tribalismus klingen, den ich weiter oben kritisiert habe. Der Unterschied ist für mich: Wenn "dann hoste es doch selbst" als Antwort auf Kritik fällt, soll das die Diskussion beenden, bevor sie beginnt. Mein Austritt kommt aber erst nach dieser Auseinandersetzung und ändert nichts an der Kritik selbst, die ich hier formuliert habe.
 
 Vorerst schließe ich den Entschluss daraus, dass ich die Plattform und den Verein verlasse. Es muss aber keine Trennung für immer sein. Die Idee und viele der Ideale von Codeberg unterstütze ich aber weiterhin.
 
