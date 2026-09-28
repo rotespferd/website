@@ -1,0 +1,37 @@
+body {
+    background-color: whitesmoke;
+    font-family: serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: sans-serif;
+}
+
+.container {
+    --inner-width: 900px;
+    padding: .75rem max(1rem, (100% - var(--inner-width))/2);
+}
+
+
+footer {
+    font-size: 12px;
+
+    div#lizenz {
+        float: left;
+    }
+
+    nav {
+        float: right;
+
+        ul {
+            margin: 0 0;
+            padding: 0 0;
+
+            list-style: none;
+
+            li {
+                display: inline;
+            }
+        }
+    }
+}

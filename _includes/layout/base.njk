@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="/css/main.css" rel="stylesheet" />
+
+        <title>{{ title }} | Marians Blog</title>
+    </head>
+
+    <body>
+        <header class="container">…</header>
+
+        <nav class="container">…</nav>
+
+        <section class="container">
+            {% block content %}
+            <p>Ups, diese Seite ist wohl noch leer...</p>
+            {% endblock %}
+        </section>
+
+        <footer class="container">
+            <div id="lizenz">
+                alle Inhalte lizensiert unter <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">CC BY-SA 4.0</a>
+            </div>
+
+            <nav aria-label="Meta-Navigation">
+                <ul>
+                    <li><a href="/meta/kontakt">Kontakt</a></li>
+                    <li><a href="/meta/impressum">Impressum</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+</html>
