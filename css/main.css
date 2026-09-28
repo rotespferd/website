@@ -7,21 +7,46 @@ h1, h2, h3, h4, h5, h6 {
     font-family: sans-serif;
 }
 
-.container {
-    --inner-width: 900px;
-    padding: .75rem max(1rem, (100% - var(--inner-width))/2);
+a {
+    text-decoration: none;
+    color: orangered;
+
+    &:hover {
+        text-decoration: underline;
+        color: orchid;
+    }
 }
 
+.container {
+    --inner-width: 900px;
+    margin: 0 max(1rem, (100% - var(--inner-width))/2);
+
+    padding: 5px;
+}
+
+header {
+    nav {
+        ul {
+            padding: 0;
+            list-style: none;
+            li {
+                display: inline-block;
+                margin: 0 5px;
+            }
+        }
+    }
+}
 
 footer {
+    display: flex;
+    justify-content: space-between;
+
     font-size: 12px;
 
     div#lizenz {
-        float: left;
     }
 
     nav {
-        float: right;
 
         ul {
             margin: 0 0;
