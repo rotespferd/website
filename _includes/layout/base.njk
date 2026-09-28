@@ -18,11 +18,9 @@
             </nav>
         </header>
 
-        <section class="container">
-            {% block content %}
-            <p>Ups, diese Seite ist wohl noch leer...</p>
-            {% endblock %}
-        </section>
+        {% block content %}
+        <p>Ups, diese Seite ist wohl noch leer...</p>
+        {% endblock %}
 
         <footer class="container">
             <div id="lizenz">
@@ -31,6 +29,7 @@
 
             <nav aria-label="Meta-Navigation">
                 <ul>
+                    <li><a href="/meta/layout">Wieso sieht die Seite so kaputt aus?</a></li>
                     <li><a href="/meta/kontakt">Kontakt</a></li>
                     <li><a href="/meta/impressum">Impressum</a></li>
                 </ul>

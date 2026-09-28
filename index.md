@@ -1,5 +1,5 @@
 ---
 title: Marians Blog
-layout: layout/default.njk
+layout: layout/homepage.njk
 ---
 Lorem Ipsum dolor it amet. Lorem lorem Ipsum ipsum dolor.
