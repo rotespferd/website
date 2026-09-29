@@ -17,6 +17,10 @@ a {
     }
 }
 
+.post-meta {
+    font-size: smaller;
+}
+
 .container {
     --inner-width: 900px;
     margin: 0 max(1rem, (100% - var(--inner-width))/2);
