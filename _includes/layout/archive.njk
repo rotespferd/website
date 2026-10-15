@@ -1,0 +1,20 @@
+{% extends "layout/base.njk" %}
+{% block content %}
+  {% from "layout/icons.njk" import icon %}
+  <section class="card archive">
+    <h1>{{ icon("list") }} {{ title }}</h1>
+    <div class="archive__body">
+      {% for group in collections.postsByYear %}
+        <h2>{{ group.year }}</h2>
+        <ul>
+          {% for post in group.posts %}
+            <li>
+              <a href="{{ post.url }}">{{ post.data.title }}</a>
+              <time datetime="{{ post.data.date | isoDate }}">{{ post.data.date | isoDate }}</time>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

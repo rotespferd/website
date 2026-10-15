@@ -18,6 +18,8 @@ export default function(eleventyConfig) {
     nbsp: " ",
   };
 
+  eleventyConfig.addFilter("rfc3339", value => new Date(value).toISOString());
+
   eleventyConfig.addFilter("teaser", (content, maxLength = 250) => {
     const text = String(content ?? "")
       .replace(/<(script|style)[^>]*>[\s\S]*?<\/\1>/gi, " ")
@@ -53,8 +55,29 @@ export default function(eleventyConfig) {
         byTag.get(tag).push(post);
       }
     }
+    const counts = [...byTag.values()].map(posts => posts.length);
+    const min = Math.min(...counts);
+    const max = Math.max(...counts);
+    // weight 1-5 for the tag cloud; a flat distribution gets the middle size.
+    const weight = count => (max === min ? 3 : 1 + Math.round((4 * (count - min)) / (max - min)));
     return [...byTag]
-      .map(([name, posts]) => ({ name, slug: eleventyConfig.getFilter("slugify")(name), posts }))
+      .map(([name, posts]) => ({
+        name,
+        slug: eleventyConfig.getFilter("slugify")(name),
+        posts,
+        weight: weight(posts.length),
+      }))
       .sort((a, b) => a.name.localeCompare(b.name, "de"));
+  });
+
+  // All posts grouped by year, newest year and newest post first.
+  eleventyConfig.addCollection('postsByYear', collectionsApi => {
+    const byYear = new Map();
+    for (const post of collectionsApi.getFilteredByGlob("post/**/*.md").sort((a, b) => b.date - a.date)) {
+      const year = post.date.getUTCFullYear();
+      if (!byYear.has(year)) byYear.set(year, []);
+      byYear.get(year).push(post);
+    }
+    return [...byYear].map(([year, posts]) => ({ year, posts }));
   });
 };

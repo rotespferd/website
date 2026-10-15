@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="/css/main.css" rel="stylesheet" />
+        <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml" />
 
         <title>{{ title }} | Marians Blog</title>
     </head>
@@ -22,8 +23,10 @@
         </div>
 
         <header class="site-header">
-            <div class="wrap">
+            <div class="wrap site-header__inner">
+                {% from "layout/icons.njk" import icon %}
                 <a class="wordmark" href="/">Marians Blog<span class="badge-beta" aria-hidden="true">beta</span></a>
+                <a class="feed-link" href="/feed.xml">{{ icon("rss") }}Abonnieren</a>
             </div>
         </header>
 
@@ -31,19 +34,11 @@
             <nav class="sidenav" aria-label="Hauptnavigation">
                 <ul>
                     <li><a href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>Startseite</a></li>
-                    <li><a href="/#beitraege">Beiträge</a></li>
+                    <li><a href="/beitraege/"{% if page.url == '/beitraege/' %} aria-current="page"{% endif %}>Beiträge</a></li>
                     <li><span class="is-disabled" title="Folgt bald">Bilder</span></li>
                     <li><span class="is-disabled" title="Folgt bald">Über mich</span></li>
                 </ul>
 
-                {% if collections.tagList.length %}
-                <h2 class="sidenav__title">Schlagwörter</h2>
-                <ul>
-                    {% for t in collections.tagList %}
-                    <li><a href="/tags/{{ t.slug }}/"{% if page.url == '/tags/' + t.slug + '/' %} aria-current="page"{% endif %}>{{ t.name }} <span class="count">({{ t.posts.length }})</span></a></li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
             </nav>
 
             <main class="site-main">
@@ -64,6 +59,17 @@
                         {% endfor %}
                     </ul>
                 </details>
+
+                {% if collections.tagList.length %}
+                <details class="gadget" open>
+                    <summary>{{ icon("tag") }} Schlagwörter</summary>
+                    <p class="tag-cloud">
+                        {% for t in collections.tagList %}
+                        <a class="tag-cloud__item tag-cloud__item--{{ t.weight }}" href="/tags/{{ t.slug }}/" title="{{ t.posts.length }} {{ 'Beitrag' if t.posts.length == 1 else 'Beiträge' }}">{{ t.name }}</a>
+                        {% endfor %}
+                    </p>
+                </details>
+                {% endif %}
 
                 <details class="gadget" open>
                     <summary>{{ icon("info") }} Lizenz</summary>
