@@ -1,66 +1,633 @@
-body {
-    background-color: whitesmoke;
-    font-family: serif;
+/* ==========================================================================
+   Marians Blog — "Legacy Google Apps" skin
+   --------------------------------------------------------------------------
+   Hand-written CSS. No framework, no preprocessor, no build step.
+
+   The reference is pre-Material Google UI (2006–2013): Google Wave, Reader,
+   Docs, Calendar. Pale blue panel headers, blue-grey washes, 1px grey-blue
+   borders, 2–3px radii, Arial, beveled grey toolbars and the 2011 Google
+   button. No skies, no grass — only the abstraction of the app chrome.
+
+   Palette anchors, straight from that era's stylesheets:
+     #c3d9ff  the signature pale Google blue (selected states, headers)
+     #e8eef7  blue-grey wash (toolbars, panel headers, table heads)
+     #b7c9e2  panel border
+     #dcdcdc  control border          #f5f5f5→#f1f1f1  Google button
+     #4d90fe  the 2011 Google blue (accent rule)
+     #1155cc  link blue
+   ========================================================================== */
+
+/* 1. Tokens ---------------------------------------------------------------- */
+:root {
+    color-scheme: light;
+
+    /* Google blue */
+    --g-blue-50: #f4f8fd;
+    --g-blue-100: #e8eef7;
+    --g-blue-200: #dbe7f6;
+    --g-blue-300: #c3d9ff;
+    --g-blue-400: #aecdf5;
+    --g-blue-500: #4d90fe;
+    --g-blue-600: #3079ed;
+    --g-blue-700: #2f5bb7;
+    --g-blue-800: #1d4470;
+    --g-blue-900: #12314f;
+
+    /* Neutral greys */
+    --grey-50: #fbfbfb;
+    --grey-100: #f5f5f5;
+    --grey-150: #f1f1f1;
+    --grey-200: #e8e8e8;
+    --grey-300: #dcdcdc;
+    --grey-400: #c9c9c9;
+    --grey-500: #767676;
+    --grey-600: #444444;
+    --grey-700: #333333;
+    --grey-800: #222222;
+
+    /* Surfaces */
+    --canvas-top: #f6f8fa;
+    --canvas: #eef1f5;
+    --panel-bg: #ffffff;
+    --panel-border: #b7c9e2;
+    --toolbar-border: var(--grey-400);
+
+    --ink: var(--grey-700);
+    --ink-soft: var(--grey-500);
+    --ink-meta: #44546a;
+    --link: #1155cc;
+    --link-visited: #551a8b;
+    --link-hover: var(--g-blue-700);
+
+    --radius-panel: 5px;
+    --radius-control: 3px;
+
+    /* Restrained depth: one pixel of white on top, one soft shadow below. */
+    --glow-top: inset 0 1px 0 rgb(255 255 255 / 0.9);
+    --shadow-panel: 0 1px 2px rgb(0 0 0 / 0.08);
+    --shadow-panel-hover: 0 2px 6px rgb(0 0 0 / 0.14);
+    --shadow-button: 0 1px 1px rgb(0 0 0 / 0.1);
+
+    --font-ui: Arial, Helvetica, "Liberation Sans", sans-serif;
+    --font-mono: Consolas, "Liberation Mono", "DejaVu Sans Mono", monospace;
+
+    --inner-width: 640px;
+    --gutter: 1rem;
+
+    /* Surface recipes. A hard cap at the midpoint is the whole gloss trick. */
+    --gel-toolbar: linear-gradient(
+        180deg,
+        #fdfdfd 0%,
+        #f7f7f7 48%,
+        #f0f0f0 52%,
+        #e8e8e8 100%
+    );
+    --gel-button: linear-gradient(
+        180deg,
+        #fefefe 0%,
+        #f7f7f7 48%,
+        var(--grey-150) 52%,
+        #ebebeb 100%
+    );
+    /* Panel heads get a smooth wash (Google headers had no candy cap);
+       the hard gloss is reserved for toolbars and buttons. */
+    --gel-head: linear-gradient(
+        180deg,
+        var(--g-blue-100) 0%,
+        var(--g-blue-200) 60%,
+        var(--g-blue-300) 100%
+    );
+    --gel-selected: linear-gradient(
+        180deg,
+        #f2f8ff 0%,
+        var(--g-blue-200) 48%,
+        var(--g-blue-300) 52%,
+        var(--g-blue-400) 100%
+    );
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: sans-serif;
+/* 2. Base ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    min-block-size: 100dvh;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-ui);
+    font-size: 1rem;
+    line-height: 1.6;
+
+    /* The flat grey app canvas the panels sit on. */
+    background-color: var(--canvas);
+    background-image: linear-gradient(180deg, var(--canvas-top), var(--canvas) 30rem);
+    background-repeat: no-repeat;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-block: 0 0.5em;
+    color: var(--grey-800);
+    font-weight: 700;
+    line-height: 1.25;
+    text-wrap: balance;
+    text-shadow: 0 1px 0 #fff;
+}
+
+p {
+    margin-block: 0 1em;
 }
 
 a {
+    color: var(--link);
     text-decoration: none;
-    color: orangered;
+
+    &:visited {
+        color: var(--link-visited);
+    }
 
     &:hover {
+        color: var(--link-hover);
         text-decoration: underline;
-        color: orchid;
+    }
+}
+
+img,
+svg,
+video {
+    max-inline-size: 100%;
+    block-size: auto;
+}
+
+::selection {
+    background: var(--g-blue-300);
+    color: var(--g-blue-900);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    outline: 2px solid var(--g-blue-600);
+    outline-offset: 1px;
+    border-radius: var(--radius-control);
+    box-shadow: 0 0 0 3px rgb(77 144 254 / 0.35);
+}
+
+/* 3. Primitives ------------------------------------------------------------ */
+.container {
+    inline-size: min(100% - 2 * var(--gutter), var(--inner-width));
+    margin-inline: auto;
+}
+
+.site-main {
+    padding-block: 1.25rem 2.5rem;
+
+    & > * + * {
+        margin-block-start: 1.25rem;
+    }
+}
+
+/* 4. Controls: the 2011 Google button -------------------------------------- */
+:is(.site-header nav a, .site-footer a) {
+    display: inline-block;
+    padding: 4px 10px;
+    color: var(--grey-600);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    background-image: var(--gel-button);
+    border: 1px solid var(--grey-300);
+    border-radius: var(--radius-control);
+    box-shadow: var(--shadow-button);
+
+    &:visited {
+        color: var(--grey-600);
+    }
+
+    &:hover,
+    &:focus-visible {
+        color: var(--g-blue-900);
+        text-decoration: none;
+        background-image: var(--gel-selected);
+        border-color: var(--g-blue-400);
+    }
+
+    &:active {
+        box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.2);
+        translate: 0 1px;
+    }
+}
+
+/* 5. Global bar ------------------------------------------------------------ */
+.site-header {
+    position: relative;
+    color: var(--grey-700);
+    background-image: var(--gel-toolbar);
+    /* The one strong blue rule in the whole chrome. */
+    border-block-end: 2px solid var(--g-blue-600);
+    box-shadow:
+        inset 0 1px 0 #fff,
+        0 2px 3px rgb(0 0 0 / 0.08);
+}
+
+.site-header__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem 1.5rem;
+    padding-block: 0.55rem;
+}
+
+.wordmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--g-blue-800);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #fff;
+
+    &:visited,
+    &:hover {
+        color: var(--g-blue-800);
+        text-decoration: none;
+    }
+
+    &:hover {
+        color: var(--g-blue-700);
+    }
+}
+
+/* Mirror-floor gloss under the wordmark — Chromium and Safari take it,
+   Firefox silently keeps the flat version. */
+@supports (-webkit-box-reflect: below 1px) {
+    .wordmark {
+        -webkit-box-reflect: below 2px
+            linear-gradient(transparent 65%, rgb(0 30 60 / 0.15));
+    }
+}
+
+/* The beta tag Google wore on half its apps. */
+.badge-beta {
+    padding: 1px 5px;
+    color: var(--g-blue-800);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: lowercase;
+    background-image: linear-gradient(180deg, #fff, var(--g-blue-100) 55%, var(--g-blue-300));
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-control);
+    box-shadow: var(--glow-top);
+}
+
+.site-header nav {
+    & ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.35rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    /* Sheen sweep: a straight highlight crossing the button on hover. */
+    & a {
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            translate: -120% 0;
+            background-image: linear-gradient(
+                100deg,
+                transparent 40%,
+                rgb(255 255 255 / 0.8) 50%,
+                transparent 60%
+            );
+            transition: translate 0.4s ease;
+        }
+
+        &:hover::after,
+        &:focus-visible::after {
+            translate: 120% 0;
+        }
+    }
+}
+
+/* 6. Panels ---------------------------------------------------------------- */
+.card,
+.post-list article {
+    overflow: hidden;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-panel);
+}
+
+/* Panel header strip — the pale blue bar Wave put on every panel. */
+.card > :is(header, h1),
+.post-list article > header {
+    padding: 0.7rem 1rem 0.6rem;
+    background-image: var(--gel-head);
+    border-block-end: 1px solid var(--g-blue-400);
+    box-shadow: var(--glow-top);
+}
+
+.card > .prose,
+.post-list article > .teaser {
+    padding: 1rem 1.15rem 1.15rem;
+}
+
+/* The homepage intro doubles as the blog's masthead. */
+.homepage-intro {
+    padding: 1.15rem 1.35rem 1.25rem;
+    background: var(--panel-bg);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-panel);
+    box-shadow: var(--shadow-panel);
+    color: var(--ink);
+    font-size: 1.0625rem;
+
+    & h1 {
+        margin: 0;
+        padding-block-end: 0.5rem;
+        font-size: clamp(1.5rem, 1.25rem + 1.2vw, 1.875rem);
+        letter-spacing: -0.015em;
+        border-block-end: 1px solid var(--g-blue-300);
+    }
+
+    /* Anything the author writes underneath the headline. */
+    & h1 + * {
+        margin-block-start: 0.9rem;
+    }
+}
+
+.post-list {
+    display: grid;
+    gap: 1rem;
+
+    & article {
+        transition:
+            box-shadow 0.15s ease,
+            translate 0.15s ease;
+
+        &:hover {
+            box-shadow: var(--shadow-panel-hover);
+            translate: 0 -1px;
+        }
+
+        & h2 {
+            margin: 0;
+            font-size: 1.0625rem;
+
+            & a {
+                color: var(--link);
+
+                &:visited {
+                    color: var(--link-visited);
+                }
+            }
+        }
+
+        & .teaser {
+            margin: 0;
+            color: var(--ink-soft);
+        }
     }
 }
 
 .post-meta {
-    font-size: smaller;
-}
-
-.container {
-    --inner-width: 900px;
-    margin: 0 max(1rem, (100% - var(--inner-width))/2);
-
-    padding: 5px;
-}
-
-header {
-    nav {
-        ul {
-            padding: 0;
-            list-style: none;
-            li {
-                display: inline-block;
-                margin: 0 5px;
-            }
-        }
-    }
-}
-
-footer {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 0.5rem;
+    margin: 0.3rem 0 0;
+    color: var(--ink-meta);
+    font-size: 0.75rem;
+}
 
-    font-size: 12px;
+/* Chips, in the Gmail-label spirit. */
+.tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
 
-    div#lizenz {
+.tag {
+    padding: 0.5px 6px;
+    color: var(--g-blue-900);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    background-image: var(--gel-selected);
+    border: 1px solid #8fb0d9;
+    border-radius: var(--radius-control);
+    box-shadow: var(--glow-top);
+}
+
+/* 7. Page and post content ------------------------------------------------- */
+.card > .post__header {
+    padding-block: 1rem 0.95rem;
+
+    & h1 {
+        margin: 0;
+        font-size: 1.5rem;
+    }
+}
+
+.card > h1 {
+    margin: 0;
+    font-size: 1.375rem;
+}
+
+/* Shared typography for every Markdown body. */
+.prose {
+    color: var(--ink);
+
+    & > :first-child {
+        margin-block-start: 0;
     }
 
-    nav {
+    & > :last-child {
+        margin-block-end: 0;
+    }
 
-        ul {
-            margin: 0 0;
-            padding: 0 0;
+    & h2,
+    & h3,
+    & h4 {
+        margin-block: 1.6em 0.5em;
+    }
 
-            list-style: none;
+    & h2 {
+        font-size: 1.25rem;
+    }
 
-            li {
-                display: inline;
-            }
+    & h3 {
+        font-size: 1.0625rem;
+    }
+
+    & ul,
+    & ol {
+        padding-inline-start: 1.4em;
+    }
+
+    & li {
+        margin-block: 0.25em;
+    }
+
+    & a {
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+            text-decoration: none;
         }
+    }
+
+    & blockquote {
+        margin: 1.5em 0;
+        padding: 0.7em 1em;
+        background: var(--g-blue-50);
+        border: 1px solid var(--g-blue-200);
+        border-inline-start: 3px solid var(--g-blue-500);
+        border-radius: var(--radius-control);
+        color: var(--g-blue-800);
+
+        & > :last-child {
+            margin-block-end: 0;
+        }
+    }
+
+    & code {
+        padding: 1px 4px;
+        background: var(--grey-100);
+        border: 1px solid var(--grey-300);
+        border-radius: var(--radius-control);
+        font-family: var(--font-mono);
+        font-size: 0.875em;
+    }
+
+    & pre {
+        margin: 1.5em 0;
+        padding: 0.85em 1em;
+        overflow-x: auto;
+        background: var(--grey-50);
+        border: 1px solid var(--grey-300);
+        border-radius: var(--radius-control);
+        box-shadow: var(--glow-top);
+        font-size: 0.875rem;
+        line-height: 1.5;
+
+        & code {
+            padding: 0;
+            background: none;
+            border: 0;
+            font-size: 1em;
+        }
+    }
+
+    & img {
+        border: 1px solid var(--grey-300);
+        border-radius: var(--radius-control);
+        box-shadow: var(--shadow-panel);
+    }
+
+    & hr {
+        margin-block: 1.75em;
+        block-size: 1px;
+        border: 0;
+        background: var(--grey-200);
+    }
+
+    /* Google's table head: the blue-grey wash. */
+    & table {
+        inline-size: 100%;
+        border-collapse: collapse;
+        font-size: 0.9375rem;
+
+        & th,
+        & td {
+            padding: 0.45em 0.7em;
+            border: 1px solid var(--grey-300);
+            text-align: start;
+        }
+
+        & th {
+            background: var(--g-blue-100);
+            border-color: var(--panel-border);
+            color: var(--g-blue-800);
+        }
+    }
+}
+
+/* 8. Footer toolbar -------------------------------------------------------- */
+.site-footer {
+    padding-block: 0.9rem;
+    color: var(--grey-600);
+    font-size: 0.75rem;
+    background-image: var(--gel-toolbar);
+    border-block-start: 1px solid var(--toolbar-border);
+    box-shadow: inset 0 1px 0 #fff;
+
+    & a {
+        padding: 2px 8px;
+        font-size: 0.75rem;
+    }
+
+    & nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+}
+
+.site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem 1.25rem;
+}
+
+/* 9. Small screens and motion preferences ---------------------------------- */
+@media (width < 40rem) {
+    .site-header__inner,
+    .site-footer__inner {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .post-list article:hover {
+        translate: none;
     }
 }

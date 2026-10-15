@@ -1,39 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="de">
     <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href="/css/main.css" rel="stylesheet" />
 
         <title>{{ title }} | Marians Blog</title>
     </head>
 
     <body>
-        <header class="container">
-            <nav aria-label="Hauptnavigation">
-                <ul>
-                    <li><a href="">Startseite</a></li>
-                    <li><a href="">Beiträge</a></li>
-                    <li><a href="">Bilder</a></li>
-                    <li><a href="">Über mich</a></li>
-                </ul>
-            </nav>
+        <header class="site-header">
+            <div class="container site-header__inner">
+                <a class="wordmark" href="/">Marians Blog<span class="badge-beta" aria-hidden="true">beta</span></a>
+
+                <nav aria-label="Hauptnavigation">
+                    <ul>
+                        <li><a href="">Startseite</a></li>
+                        <li><a href="">Beiträge</a></li>
+                        <li><a href="">Bilder</a></li>
+                        <li><a href="">Über mich</a></li>
+                    </ul>
+                </nav>
+            </div>
         </header>
 
-        {% block content %}
-        <p>Ups, diese Seite ist wohl noch leer...</p>
-        {% endblock %}
+        <main class="site-main">
+            {% block content %}
+            <p>Ups, diese Seite ist wohl noch leer...</p>
+            {% endblock %}
+        </main>
 
-        <footer class="container">
-            <div id="lizenz">
-                alle Inhalte lizensiert unter <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">CC BY-SA 4.0</a>
+        <footer class="site-footer">
+            <div class="container site-footer__inner">
+                <div id="lizenz">
+                    alle Inhalte lizensiert unter <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">CC BY-SA 4.0</a>
+                </div>
+
+                <nav aria-label="Meta-Navigation">
+                    <ul>
+                        <li><a href="/meta/layout">Wieso sieht die Seite so kaputt aus?</a></li>
+                        <li><a href="/meta/kontakt">Kontakt</a></li>
+                        <li><a href="/meta/impressum">Impressum</a></li>
+                    </ul>
+                </nav>
             </div>
-
-            <nav aria-label="Meta-Navigation">
-                <ul>
-                    <li><a href="/meta/layout">Wieso sieht die Seite so kaputt aus?</a></li>
-                    <li><a href="/meta/kontakt">Kontakt</a></li>
-                    <li><a href="/meta/impressum">Impressum</a></li>
-                </ul>
-            </nav>
         </footer>
     </body>
 </html>
