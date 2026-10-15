@@ -9,41 +9,78 @@
     </head>
 
     <body>
-        <header class="site-header">
-            <div class="container site-header__inner">
-                <a class="wordmark" href="/">Marians Blog<span class="badge-beta" aria-hidden="true">beta</span></a>
-
-                <nav aria-label="Hauptnavigation">
-                    <ul>
-                        <li><a href="">Startseite</a></li>
-                        <li><a href="">Beiträge</a></li>
-                        <li><a href="">Bilder</a></li>
-                        <li><a href="">Über mich</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-
-        <main class="site-main">
-            {% block content %}
-            <p>Ups, diese Seite ist wohl noch leer...</p>
-            {% endblock %}
-        </main>
-
-        <footer class="site-footer">
-            <div class="container site-footer__inner">
-                <div id="lizenz">
-                    alle Inhalte lizensiert unter <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">CC BY-SA 4.0</a>
-                </div>
-
+        <div class="utility-bar">
+            <div class="wrap utility-bar__inner">
                 <nav aria-label="Meta-Navigation">
                     <ul>
-                        <li><a href="/meta/layout">Wieso sieht die Seite so kaputt aus?</a></li>
+                        <li><a href="/meta/layout">Wieso sieht die Seite so aus?</a></li>
                         <li><a href="/meta/kontakt">Kontakt</a></li>
                         <li><a href="/meta/impressum">Impressum</a></li>
                     </ul>
                 </nav>
             </div>
+        </div>
+
+        <header class="site-header">
+            <div class="wrap">
+                <a class="wordmark" href="/">Marians Blog<span class="badge-beta" aria-hidden="true">beta</span></a>
+            </div>
+        </header>
+
+        <div class="wrap layout">
+            <nav class="sidenav" aria-label="Hauptnavigation">
+                <ul>
+                    <li><a href="/"{% if page.url == '/' %} aria-current="page"{% endif %}>Startseite</a></li>
+                    <li><a href="/#beitraege">Beiträge</a></li>
+                    <li><span class="is-disabled" title="Folgt bald">Bilder</span></li>
+                    <li><span class="is-disabled" title="Folgt bald">Über mich</span></li>
+                </ul>
+
+                {% if collections.tagList.length %}
+                <h2 class="sidenav__title">Schlagwörter</h2>
+                <ul>
+                    {% for t in collections.tagList %}
+                    <li><a href="/tags/{{ t.slug }}/"{% if page.url == '/tags/' + t.slug + '/' %} aria-current="page"{% endif %}>{{ t.name }} <span class="count">({{ t.posts.length }})</span></a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </nav>
+
+            <main class="site-main">
+                {% block content %}
+                <p>Ups, diese Seite ist wohl noch leer...</p>
+                {% endblock %}
+            </main>
+
+            <aside class="sidebar" aria-label="Zusatzinfos">
+                {% from "layout/icons.njk" import icon %}
+                <details class="gadget" open>
+                    <summary>{{ icon("new") }} Neueste Beiträge</summary>
+                    <ul class="gadget__list">
+                        {% for post in collections.blog %}
+                            {% if loop.index <= 5 %}
+                            <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </details>
+
+                <details class="gadget" open>
+                    <summary>{{ icon("info") }} Lizenz</summary>
+                    <p class="gadget__text">
+                        Alle Inhalte lizenziert unter
+                        <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">CC BY-SA 4.0</a>.
+                    </p>
+                </details>
+            </aside>
+        </div>
+
+        <footer class="site-footer">
+            <p>
+                &copy; {{ site.year }} Marian Hahne
+                &middot; <a href="/meta/kontakt">Kontakt</a>
+                &middot; <a href="/meta/impressum">Impressum</a>
+            </p>
         </footer>
     </body>
 </html>

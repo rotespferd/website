@@ -1,0 +1,17 @@
+{# 16px inline icons, soft fills, decorative (aria-hidden). #}
+{% macro icon(name) %}
+<svg class="icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+{% if name == "list" %}
+  <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" fill="#d2e3fc" stroke="#6b8fd0"/>
+  <path d="M4 6h8M4 8.5h8M4 11h5" stroke="#2a64cc" stroke-width="1.2"/>
+{% elif name == "tag" %}
+  <path d="M2 2.5h5.5L14 9l-4.5 4.5L3 7z" fill="#ffe08a" stroke="#c9961a"/>
+  <circle cx="5" cy="5" r="1.1" fill="#fff"/>
+{% elif name == "new" %}
+  <path d="M8 1.5l1.9 4.1 4.4.5-3.3 3 .9 4.4L8 11.3l-3.9 2.2.9-4.4-3.3-3 4.4-.5z" fill="#ffd54f" stroke="#c9961a"/>
+{% elif name == "info" %}
+  <circle cx="8" cy="8" r="6.5" fill="#d2e3fc" stroke="#6b8fd0"/>
+  <path d="M8 7v4" stroke="#2a64cc" stroke-width="1.6"/><circle cx="8" cy="4.8" r="1" fill="#2a64cc"/>
+{% endif %}
+</svg>
+{% endmacro %}

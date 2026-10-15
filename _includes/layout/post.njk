@@ -1,17 +1,23 @@
 {% extends "layout/base.njk" %}
 {% block content %}
-  <div class="container">
-    <article class="card post">
-      <header class="post__header">
-        <h1>{{ title }}</h1>
-        <p class="post-meta">
-          <time datetime="{{ date | isoDate }}">{{ date | isoDate }}</time>
-          {% if tags %}
-          <span class="tags">{% for tag in tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>
-          {% endif %}
-        </p>
-      </header>
-      <div class="prose post__body">{{ content | safe }}</div>
-    </article>
-  </div>
+  <article class="card post">
+    <header class="post__header">
+      <h1>{{ title }}</h1>
+      <p class="post-meta">
+        <time datetime="{{ date | isoDate }}">{{ date | isoDate }}</time>
+        {% if tags %}
+        <span class="tags">{% for tag in tags %}<a class="tag" href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% endfor %}</span>
+        {% endif %}
+      </p>
+    </header>
+    <div class="prose post__body">{{ content | safe }}</div>
+  </article>
+
+  {% set newer = collections.blog | getPreviousCollectionItem(page) %}
+  {% set older = collections.blog | getNextCollectionItem(page) %}
+  <nav class="post-nav" aria-label="Weitere Beiträge">
+    <a class="btn" href="/">&uarr; Übersicht</a>
+    {% if newer %}<a class="btn" href="{{ newer.url }}" rel="prev">&larr; {{ newer.data.title }}</a>{% endif %}
+    {% if older %}<a class="btn" href="{{ older.url }}" rel="next">{{ older.data.title }} &rarr;</a>{% endif %}
+  </nav>
 {% endblock %}

@@ -1,20 +1,25 @@
 {% extends "layout/base.njk" %}
 {% block content %}
-    <section class="container homepage-intro">
+    {% from "layout/icons.njk" import icon %}
+    <p class="notice" role="status">Diese Seite ist noch im Aufbau (Beta). Manches funktioniert noch nicht.</p>
+
+    <section class="homepage-intro">
         {{ content | safe }}
+        <p><a class="btn-cta" href="#beitraege">Beiträge lesen</a></p>
     </section>
 
-    <section class="container post-list" aria-label="Blogposts">
+    <section class="card post-list" id="beitraege" aria-labelledby="beitraege-titel">
+        <h2 class="card__title" id="beitraege-titel">{{ icon("list") }} Beiträge</h2>
         {% for post in collections.blog %}
             {% set postDate = post.data.date | isoDate %}
             <article>
                 <header>
-                    <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+                    <h3><a href="{{ post.url }}">{{ post.data.title }}</a></h3>
                     <p class="post-meta">
-                        <time datetime="{{ postDate }}">{{ postDate }}</time>
                         {% if post.data.tags %}
-                        <span class="tags">{% for tag in post.data.tags %}<span class="tag">{{ tag }}</span>{% endfor %}</span>
+                        <span class="tags">{% for tag in post.data.tags %}<a class="tag" href="/tags/{{ tag | slugify }}/">{{ tag }}</a>{% endfor %}</span>
                         {% endif %}
+                        <time datetime="{{ postDate }}">{{ postDate }}</time>
                     </p>
                 </header>
 

@@ -1,4 +1,7 @@
+import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
+
 export default function(eleventyConfig) {
+  eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPassthroughCopy("css/main.css");
 
   eleventyConfig.addFilter("isoDate", value => {
@@ -38,5 +41,20 @@ export default function(eleventyConfig) {
     return collectionsApi
       .getFilteredByGlob("post/**/*.md")
       .sort((a, b) => b.date - a.date);
+  });
+
+  // One entry per tag with its posts (newest first). Feeds the label list
+  // in the sidebar and the generated /tags/<slug>/ pages.
+  eleventyConfig.addCollection('tagList', collectionsApi => {
+    const byTag = new Map();
+    for (const post of collectionsApi.getFilteredByGlob("post/**/*.md").sort((a, b) => b.date - a.date)) {
+      for (const tag of post.data.tags ?? []) {
+        if (!byTag.has(tag)) byTag.set(tag, []);
+        byTag.get(tag).push(post);
+      }
+    }
+    return [...byTag]
+      .map(([name, posts]) => ({ name, slug: eleventyConfig.getFilter("slugify")(name), posts }))
+      .sort((a, b) => a.name.localeCompare(b.name, "de"));
   });
 };
