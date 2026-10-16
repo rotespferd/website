@@ -1,10 +1,9 @@
-+++
-title = 'Links KW14/2025'
-date = 2025-04-06T13:51:49+01:00
-
-tags = ['links der woche', 'linktipps']
-draft = false
-+++
+---
+title: 'Links KW14/2025'
+date: '2025-04-06'
+layout: layout/post.njk
+tags: ['links der woche', 'linktipps']
+---
 
 Meine Linksammlung der Woche 14/2025:
 

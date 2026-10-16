@@ -1,9 +1,9 @@
-+++
-title = 'Podcast-Empfehlung: Die Wrintheit'
-date = 2024-10-10T17:11:28+02:00
-draft = false
-tags = ['Podcast-Empfehlung']
-+++
+---
+title: 'Podcast-Empfehlung: Die Wrintheit'
+date: '2024-10-10'
+layout: layout/post.njk
+tags: ['Podcast-Empfehlung']
+---
 
 In der aktuellen Folge des Podcast [Wrintheit](https://wrint.de/category/wrintheit/) merken die Hosts [Alexandra Tobor](https://alexandratobor.de/) und [Holger Klein](https://de.wikipedia.org/wiki/Holger_Klein) an, dass auf Social-Media heutzutage viel weniger Empfehlungen für gute Inhalte geteilt werden. Eine allgemeine Empfehlungskultur würde es nicht mehr geben, weshalb sich viele Menschen, insbesondere im Podcastbereich, nur noch die bekannten Formate der Personen hören, die aus anderen Bereichen bekannt sind. Hierdurch würde die unabhängige Podcastszene, die das Format groß gemacht hat, leiden.
 

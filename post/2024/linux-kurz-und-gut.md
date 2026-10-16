@@ -1,12 +1,9 @@
-+++
-title = 'Linux - kurz und gut'
-date = 2024-10-20T21:02:23+02:00
-draft = false
-tags = ['linux', 'buch']
-
-[cover]
-image = "linux.jpg"
-+++
+---
+title: 'Linux - kurz und gut'
+date: '2024-10-20'
+layout: layout/post.njk
+tags: ['linux', 'buch']
+---
 Ich habe mir ein neues Buch gekauft, in dem Linux-Befehle stehen. Hier kann man eigentlich direkt aufhören zu lesen und sich denken: die 90er-Jahre haben angerufen und wollen ihre Papierhandbücher zurück. Wer kauft sich denn im Jahr 2024 noch Bücher über IT-Themen. Das Buch ist doch schon veraltet, wenn es gedruckt wird.
 Außerdem kann man doch sowieso jeden Befehl googeln oder einfach ChatGPT fragen, was die genauen Parameter zum Entpacken einer .tar.gz-Datei sind.
 

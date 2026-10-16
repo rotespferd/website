@@ -1,9 +1,9 @@
-+++
-title = 'Mein Fedora Update-Script'
-date = 2024-09-27T12:58:47+02:00
-draft = false
-tags = ['linux', 'fedora', 'flathub', 'snapper']
-+++
+---
+title: 'Mein Fedora Update-Script'
+date: '2024-09-27'
+layout: layout/post.njk
+tags: ['linux', 'fedora', 'flathub', 'snapper']
+---
 Um meine Fedora-Systeme stehts aktuell zu halten habe ich über die Zeit ein dezidiertes Update-Skript etabliert. Hierüber update ich nicht nur alle DNF-Pakete, sondern auch alle Flatpaks-Apps und VS Code Extensions. Sot habe ich alle zentralen Komponenten auf meinem System in einem Aufwasch aktualisiert.
 
 Das Skript sieht wie folgt aus:

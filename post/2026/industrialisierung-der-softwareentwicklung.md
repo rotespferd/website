@@ -1,9 +1,9 @@
-+++
-title = 'Vom Handwerk zur CNC-Fräse'
-date = 2026-06-11T12:15:11+02:00
-draft = false
-tags = ['ai', 'dev']
-+++
+---
+title: 'Vom Handwerk zur CNC-Fräse'
+date: '2026-06-11'
+layout: layout/post.njk
+tags: ['ai', 'dev']
+---
 Je länger ich mit KI-Agenten in meiner täglichen Arbeit entwickle, desto deutlicher wird für mich ein Bild: wir erleben gerade die Industrialisierung unserer Branche. Ich sage das nicht euphorisch, sondern eher mit gemischten Gefühlen, denn ich sehe Vor- und Nachteile in dieser Entwicklung.
 
 Bisher haben wir wie Handwerker gearbeitet. Mit Editor, Compiler und ein paar Hilfsmitteln haben wir jede Zeile selbst geschrieben, jedes Stück von Hand gefeilt. Das verschiebt sich gerade. Wir werden zu Maschinenbediener:innen, die Software in größerem Maßstab produzieren. Und ich glaube nicht, dass das wieder weggeht. Wir werden uns daran anpassen, ob wir wollen oder nicht.

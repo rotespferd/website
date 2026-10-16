@@ -1,10 +1,9 @@
-+++
-title = 'Links KW16/2025'
-date = 2025-04-20T10:15:49+01:00
-
-tags = ['links der woche', 'linktipps']
-draft = false
-+++
+---
+title: 'Links KW16/2025'
+date: '2025-04-20'
+layout: layout/post.njk
+tags: ['links der woche', 'linktipps']
+---
 
 Frohe Ostern wünsche ich euch!
 

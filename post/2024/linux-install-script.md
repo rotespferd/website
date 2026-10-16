@@ -1,9 +1,9 @@
-+++
-title = 'Mein Linux Install-Script'
-date = 2024-10-01T16:15:23+02:00
-draft = false
-tags = ['linux', 'fedora', 'bash']
-+++
+---
+title: 'Mein Linux Install-Script'
+date: '2024-10-01'
+layout: layout/post.njk
+tags: ['linux', 'fedora', 'bash']
+---
 Ich habe ine gewagte These: viele IT-affine Linux-User kenne und leben das Phänomen des "Distro-Hoppings": auf Grund der [schieren Auswahl](https://distrowatch.com/) an möglichen Linux-Distributionen probiert man, gerade am Anfang seiner Linux-Karriere, viele Distros aus, bis man seine Lieblingsdistro gefunden hat.
 
 Bei war es zumindest so: bis sich Fedora als meine Wahl für den Desktop herauskristallisiert hatte habe ich viele andere Distros getestet. Hierbei steht man immer vor der Herausforderung das System an seine Bedürfnisse anzupassen. Pakete und Programme wollen installiert, [Dotfiles](https://codeberg.org/rotespferd/dotfiles) konfiguriert und die jeweiligen Desktop-Umgebung an die persönlichen Vorlieben angepasst werden. Bis man sich dann "zu Hause" fühlt kann mehrere Stunden oder gar Tage dauern. Und erst dann beginnt der eigentliche Test der Distribution und man prüft sie auf Alltagstauglichkeit.

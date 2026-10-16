@@ -1,10 +1,9 @@
-+++
-title = 'Cabel Sasser auf der XOXO 2024'
-date = 2024-10-16T17:30:12+02:00
-draft = false
-
-tags = ['linktipps']
-+++
+---
+title: 'Cabel Sasser auf der XOXO 2024'
+date: '2024-10-16'
+layout: layout/post.njk
+tags: ['linktipps']
+---
 
 [Cabel Sasser](https://cabel.com/about/) ist der Gründer und Mit-Inhaber der bekannten Mac- und iOS-Entwicklerfirma Panic.
 
