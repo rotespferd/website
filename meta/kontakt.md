@@ -2,4 +2,7 @@
 title: 'Kontakt'
 layout: layout/default.njk
 ---
-TODO: Kontaktmöglichkeiten eintragen (E-Mail, Fediverse, ...).
+Du erreichst mich am einfachsten im Fediverse. Dort antworte ich meistens am schnellsten.
+
+- Fediverse: [@rotespferd@nrw.social](https://nrw.social/@rotespferd)
+- Codeberg: [rotespferd](https://codeberg.org/rotespferd)
