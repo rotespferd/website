@@ -18,6 +18,8 @@ Eleventy ignores `_content`, `.agents`, `.claude`, `AGENTS.md`, and `CLAUDE.md` 
 
 ## Build, Test, and Development Commands
 
+`nix develop` provides Node, pnpm, git and git-lfs, plus `serve` and `build` helpers for the commands below. Run `git lfs pull` once so images under `assets/images/` are real files instead of LFS pointers.
+
 ```sh
 pnpm install
 ```
@@ -82,7 +84,6 @@ There is no draft mechanism: front matter such as `draft: true` is inert and any
 This repo is mid-migration. These pieces still assume Hugo and are known to be stale:
 
 - `.forgejo/workflows/build.yaml` installs Hugo, runs `hugo`, and rsyncs `public/` to production. There is no `hugo.toml`, so this pipeline does not match the repo and needs porting to `pnpm exec eleventy` plus `_site/` before the next push to `main`.
-- `flake.nix` provides `hugo` in its dev shell and defines `serve`/`build` helpers that call it.
 - `.agents/skills/blogpost-creator/SKILL.md` documents the Hugo conventions (`content/posts/`, TOML `+++` front matter, `hugo` as the validation command). Follow this file instead until that skill is updated; the remaining backlog in `_content/posts/` still uses Hugo front matter, some of it TOML-style (`tags = [...]`).
 - Only a few posts have been migrated into `post/`; homepage navigation links in `base.njk` are empty hrefs, and the footer links to `/meta/kontakt` and `/meta/impressum`, which do not exist yet.
 - No image or gallery pipeline exists yet, and `post.njk` renders only title and body — no date or tags on single post pages.

@@ -28,20 +28,22 @@
             packages = with pkgs; [
               git
               git-lfs
-              hugo
+              nodejs
+              pnpm
             ];
 
             shellHook = ''
-              echo "Hugo $(hugo version)"
+              echo "Node $(node --version), pnpm $(pnpm --version)"
+              [ -d node_modules ] || echo "Run 'pnpm install' to install Eleventy."
               echo "Run 'git lfs pull' if gallery images are still LFS pointer files."
-              echo "Run 'serve' for drafts or 'build' for the production build."
+              echo "Run 'serve' for the dev server or 'build' for the production build."
 
               serve() {
-                hugo server -D
+                pnpm exec eleventy --serve
               }
 
               build() {
-                hugo
+                pnpm exec eleventy
               }
             '';
           };
