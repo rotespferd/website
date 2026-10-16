@@ -1,0 +1,17 @@
+{% extends "layout/base.njk" %}
+{% block content %}
+    {% from "layout/icons.njk" import icon %}
+    <section class="card post-list" aria-labelledby="bilder-titel">
+        <h1 class="card__title" id="bilder-titel">Bilder</h1>
+        {% for post in collections.bilder | reverse %}
+            {% set postDate = post.data.date | isoDate %}
+            <article>
+                <header>
+                    <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
+                    <p class="post-meta"><time datetime="{{ postDate }}">{{ postDate }}</time></p>
+                </header>
+                {% if post.data.cover %}<a href="{{ post.url }}"><img class="cover cover--thumb" src="{{ post.data.cover }}" alt="" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></a>{% endif %}
+            </article>
+        {% endfor %}
+    </section>
+{% endblock %}

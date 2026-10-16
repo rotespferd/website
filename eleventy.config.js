@@ -13,7 +13,7 @@ export default function(eleventyConfig) {
       .filter(name => /\.(jpe?g|png|webp|avif|gif)$/i.test(name))
       .sort();
     const items = files
-      .map(name => `<a href="/images/${slug}/${name}"><img src="/images/${slug}/${name}" alt="" loading="lazy"></a>`)
+      .map(name => `<a href="/images/${slug}/${name}"><img src="/images/${slug}/${name}" alt="" loading="lazy" decoding="async" onload="this.classList.add('loaded')"></a>`)
       .join("");
     return `<div class="gallery">${items}</div>`;
   });

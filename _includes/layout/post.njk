@@ -11,7 +11,7 @@
       </p>
     </header>
     {% if cover %}
-    <img class="cover" src="{{ cover }}" alt="">
+    <img class="cover" src="{{ cover }}" alt="" decoding="async" onload="this.classList.add('loaded')">
     {% endif %}
     <div class="prose post__body">{{ content | safe }}</div>
   </article>

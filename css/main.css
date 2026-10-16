@@ -630,14 +630,48 @@ video {
     border-block: 1px solid var(--border);
 }
 
+/* Blur-up: with JS, images start blurred on a grey placeholder and sharpen
+   once the browser has loaded them. Without JS they render normally. */
+.js :is(.cover, .gallery img) {
+    background: var(--chrome-300);
+    filter: blur(14px);
+    transition: filter 0.4s ease-out;
+
+    &.loaded {
+        filter: none;
+    }
+}
+
+/* Gallery: late-2000s photo-album look. Grey well, framed thumbnails with a
+   glossy white border, soft drop shadow and a lift on hover. */
 .gallery {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 12px;
+    padding: 12px;
+    background: linear-gradient(var(--chrome-200), var(--chrome-300));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-card);
+    box-shadow: inset 0 1px 3px rgb(0 0 0 / 0.15);
 
     & a {
-        flex: 1 1 auto;
-        block-size: 200px;
+        flex: 1 1 160px;
+        block-size: 150px;
+        overflow: hidden;
+        padding: 4px;
+        background: linear-gradient(#fff, #f1f1f1);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-control);
+        box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
+        transition: transform 0.15s, box-shadow 0.15s;
+
+        &:hover,
+        &:focus-visible {
+            transform: translateY(-2px) scale(1.03);
+            border-color: var(--blue-border);
+            box-shadow: 0 4px 10px rgb(0 0 0 / 0.35);
+            position: relative;
+        }
     }
 
     & img {

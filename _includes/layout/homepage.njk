@@ -24,7 +24,7 @@
                     </p>
                 </header>
 
-                {% if post.data.cover %}<img class="cover cover--thumb" src="{{ post.data.cover }}" alt="" loading="lazy">{% endif %}
+                {% if post.data.cover %}<img class="cover cover--thumb" src="{{ post.data.cover }}" alt="" loading="lazy" decoding="async" onload="this.classList.add('loaded')">{% endif %}
                 <div class="teaser">{{ post.content | teaser }}</div>
             </article>
             {% endif %}
