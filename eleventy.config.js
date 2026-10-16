@@ -1,3 +1,4 @@
+import { readdirSync } from "node:fs";
 import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
 export default function(eleventyConfig) {
@@ -5,6 +6,17 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("css/main.css");
   // Article images live in assets/images/<slug>/ and are served at /images/<slug>/.
   eleventyConfig.addPassthroughCopy({ "assets/images": "images" });
+
+  // {% gallery "slug" %} lists every image in assets/images/<slug>/ in name order.
+  eleventyConfig.addShortcode("gallery", slug => {
+    const files = readdirSync(`assets/images/${slug}`)
+      .filter(name => /\.(jpe?g|png|webp|avif|gif)$/i.test(name))
+      .sort();
+    const items = files
+      .map(name => `<a href="/images/${slug}/${name}"><img src="/images/${slug}/${name}" alt="" loading="lazy"></a>`)
+      .join("");
+    return `<div class="gallery">${items}</div>`;
+  });
 
   eleventyConfig.addFilter("isoDate", value => {
     const date = value instanceof Date ? value : new Date(value);
