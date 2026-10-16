@@ -622,6 +622,21 @@ video {
     }
 }
 
+.cover {
+    display: block;
+    inline-size: 100%;
+    max-block-size: 22rem;
+    object-fit: cover;
+    border-block: 1px solid var(--border);
+}
+
+.cover--thumb {
+    max-block-size: 12rem;
+    margin-block: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-control);
+}
+
 .post-meta {
     display: flex;
     flex-wrap: wrap;

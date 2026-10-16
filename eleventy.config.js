@@ -3,6 +3,8 @@ import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 export default function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPassthroughCopy("css/main.css");
+  // Cover images sit in a folder named like the post and are referenced relative to it.
+  eleventyConfig.addPassthroughCopy("post/**/*.{jpg,jpeg,png,webp,avif,gif}");
 
   eleventyConfig.addFilter("isoDate", value => {
     const date = value instanceof Date ? value : new Date(value);

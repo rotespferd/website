@@ -10,6 +10,9 @@
         {% endif %}
       </p>
     </header>
+    {% if cover %}
+    <img class="cover" src="{{ page.url }}{{ cover }}" alt="">
+    {% endif %}
     <div class="prose post__body">{{ content | safe }}</div>
   </article>
 
