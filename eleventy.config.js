@@ -55,7 +55,7 @@ export default function(eleventyConfig) {
 
   eleventyConfig.addCollection('blog', collectionsApi => {
     return collectionsApi
-      .getFilteredByGlob("post/**/*.md")
+      .getFilteredByGlob("posts/**/*.md")
       .sort((a, b) => b.date - a.date);
   });
 
@@ -63,7 +63,7 @@ export default function(eleventyConfig) {
   // in the sidebar and the generated /tags/<slug>/ pages.
   eleventyConfig.addCollection('tagList', collectionsApi => {
     const byTag = new Map();
-    for (const post of collectionsApi.getFilteredByGlob("post/**/*.md").sort((a, b) => b.date - a.date)) {
+    for (const post of collectionsApi.getFilteredByGlob("posts/**/*.md").sort((a, b) => b.date - a.date)) {
       for (const tag of post.data.tags ?? []) {
         if (!byTag.has(tag)) byTag.set(tag, []);
         byTag.get(tag).push(post);
@@ -87,7 +87,7 @@ export default function(eleventyConfig) {
   // All posts grouped by year, newest year and newest post first.
   eleventyConfig.addCollection('postsByYear', collectionsApi => {
     const byYear = new Map();
-    for (const post of collectionsApi.getFilteredByGlob("post/**/*.md").sort((a, b) => b.date - a.date)) {
+    for (const post of collectionsApi.getFilteredByGlob("posts/**/*.md").sort((a, b) => b.date - a.date)) {
       const year = post.date.getUTCFullYear();
       if (!byYear.has(year)) byYear.set(year, []);
       byYear.get(year).push(post);
