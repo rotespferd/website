@@ -1,11 +1,16 @@
 {% extends "layout/base.njk" %}
 {% block content %}
-    {% from "layout/icons.njk" import icon %}
+    {% from "layout/icons.njk" import icon, socialIcon %}
     <p class="notice" role="status">Diese Seite ist noch im Aufbau (Beta). Manches funktioniert noch nicht.</p>
 
     <section class="homepage-intro">
         {{ content | safe }}
         <p><a class="btn-cta" href="#beitraege">Beiträge lesen</a></p>
+        <p class="social-links" aria-label="Ich im Netz">
+            {% for profile in site.profiles %}
+            <a class="social-link social-link--{{ profile.icon }}" href="{{ profile.url }}" target="_blank" rel="noopener noreferrer me" title="{{ profile.name }}" aria-label="{{ profile.name }}">{{ socialIcon(profile.icon) }}</a>
+            {% endfor %}
+        </p>
     </section>
 
     <section class="card post-list" id="beitraege" aria-labelledby="beitraege-titel">
