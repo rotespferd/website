@@ -6,7 +6,34 @@
         <link href="/css/main.css" rel="stylesheet" />
         <link rel="alternate" type="application/atom+xml" title="{{ site.title }}" href="/feed.xml" />
 
-        <title>{{ title }} | Marians Blog</title>
+        <title>{% if page.url == '/' %}{{ site.title }}{% else %}{{ title }} | {{ site.title }}{% endif %}</title>
+
+        {# Compute description: front matter > post teaser > site default #}
+        {%- if description -%}
+            {%- set pageDescription = description -%}
+        {%- elif layout == 'layout/post.njk' -%}
+            {%- set pageDescription = content | teaser(200) -%}
+        {%- else -%}
+            {%- set pageDescription = site.description -%}
+        {%- endif -%}
+        <meta name="description" content="{{ pageDescription }}" />
+
+        <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+        {# OpenGraph #}
+        <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+        <meta property="og:title" content="{{ title }}" />
+        <meta property="og:site_name" content="{{ site.title }}" />
+        <meta property="og:locale" content="de_DE" />
+        <meta property="og:type" content="{% if layout == 'layout/post.njk' %}article{% else %}website{% endif %}" />
+        <meta property="og:description" content="{{ pageDescription }}" />
+        {% if cover %}<meta property="og:image" content="{{ site.url }}{{ cover }}" />{% endif %}
+
+        {# Twitter Card #}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="{{ title }}" />
+        <meta name="twitter:description" content="{{ pageDescription }}" />
+        {% if cover %}<meta name="twitter:image" content="{{ site.url }}{{ cover }}" />{% endif %}
     <script>document.documentElement.className="js"</script>
     </head>
 
