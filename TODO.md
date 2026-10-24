@@ -8,7 +8,7 @@
 
 - [x] **OpenGraph-Meta-Tags** in `base.njk` ergänzen: `og:url`, `og:title`, `og:description`, `og:image`, `og:locale`, `og:type`, `og:site_name`
 - [x] **Twitter Card Meta-Tags** in `base.njk` ergänzen: `twitter:card`, `twitter:image`, `twitter:title`, `twitter:description`
-- [ ] **Schema.org JSON-LD** ergänzen: `Organization` mit `sameAs` (Codeberg, GitHub, Mastodon, LinkedIn)
+- [x] **Schema.org JSON-LD** ergänzen: `WebSite` mit `sameAs` (Social-Links) auf allen Seiten, `BlogPosting` auf Post-Seiten
 - [x] **Canonical URL** (`<link rel="canonical">`) in `base.njk` ergänzen
 
 ## Assets & Icons

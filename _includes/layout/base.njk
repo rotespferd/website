@@ -34,6 +34,35 @@
         <meta name="twitter:title" content="{{ title }}" />
         <meta name="twitter:description" content="{{ pageDescription }}" />
         {% if cover %}<meta name="twitter:image" content="{{ site.url }}{{ cover }}" />{% endif %}
+
+        {# Schema.org JSON-LD #}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": {{ site.title | dump | safe }},
+          "url": {{ site.url | dump | safe }},
+          "description": {{ site.description | dump | safe }},
+          "sameAs": {{ site.social | dump | safe }}
+        }
+        </script>
+        {% if layout == 'layout/post.njk' %}
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          "headline": {{ title | dump | safe }},
+          "url": {{ (site.url + page.url) | dump | safe }},
+          "datePublished": {{ date | rfc3339 | dump | safe }},
+          "dateModified": {{ date | rfc3339 | dump | safe }},
+          "author": {
+            "@type": "Person",
+            "name": "Marian Hahne"
+          },
+          "description": {{ pageDescription | dump | safe }}
+        }
+        </script>
+        {% endif %}
     <script>document.documentElement.className="js"</script>
     </head>
 
