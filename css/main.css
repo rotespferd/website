@@ -489,43 +489,45 @@ video {
 .tag-cloud__item--4 { font-size: 1.25rem; }
 .tag-cloud__item--5 { font-size: 1.5rem; }
 
-/* Tag cloud on the dedicated /tags/ page: larger, card-wrapped. */
-.tag-cloud-page {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+/* Tag list on the dedicated /tags/ page: simple alphabetical list. */
+.tag-list {
+    list-style: none;
     padding: 0.9rem 1.1rem;
+    margin: 0;
+    columns: 2;
+    column-gap: 2rem;
 }
 
-.tag-cloud-item {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.35rem 0.75rem;
+.tag-list li {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.tag-list li:last-child {
+    border-bottom: none;
+}
+
+.tag-list a {
     color: var(--sky-ink);
     text-decoration: none;
-    background-image: var(--grad-button);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-pill);
-    box-shadow: var(--inset-hi), var(--shadow);
-    transition: box-shadow 0.15s;
+    font-weight: 500;
+}
 
-    &:hover {
-        box-shadow: var(--inset-hi), var(--shadow-hover);
-        text-decoration: none;
-    }
+.tag-list a:hover {
+    text-decoration: underline;
 }
 
 .tag-count {
-    margin-inline-start: 0.4em;
     color: var(--ink-soft);
-    font-size: 0.8em;
+    font-size: 0.875rem;
+    margin-left: 0.3rem;
 }
 
-.tag-cloud-item--1 { font-size: 0.875rem; }
-.tag-cloud-item--2 { font-size: 1rem; }
-.tag-cloud-item--3 { font-size: 1.125rem; }
-.tag-cloud-item--4 { font-size: 1.25rem; }
-.tag-cloud-item--5 { font-size: 1.375rem; }
+@media (max-width: 600px) {
+    .tag-list {
+        columns: 1;
+    }
+}
 
 /* "Neu!" sticker: a 16-point burst cut with clip-path. */
 .starburst {
