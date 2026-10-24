@@ -69,7 +69,25 @@ For CSS or layout changes, check both the list page (`index.html`) and a single 
 
 ## Commit & Pull Request Guidelines
 
-Use Conventional Commits, for example `feat: rework homepage post listing`, `fix: correct post typo`, or `chore: port build to eleventy`. Keep the subject concise and lowercase after the type, and use scopes when helpful (`content`, `css`, `templates`).
+Always use the `conventional-commits` skill (`.agents/skills/conventional-commits/`) when creating a commit. Load it before writing the message and follow its checklist. In short:
+
+- Format: `<type>[optional scope]: <description>`, types from the skill's table (`feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`).
+- Description in imperative mood, lowercase, no trailing period; use scopes when helpful (`content`, `css`, `templates`, `seo`, `ui`).
+- Separate subject and body with a blank line; wrap the body at 72 characters and explain the *why*, not the *how*.
+- Mark breaking changes with `!` after the type/scope or a `BREAKING CHANGE:` footer.
+- Always commit with `--signoff` (`git commit --signoff`).
+- AI agents must add the attribution footer `Assisted-by: <Model Name> via <Tool Name>`.
+
+Example:
+
+```text
+feat(ui): add back-to-top button
+
+Show a floating button after 300px of scrolling. The previous
+one-viewport threshold never triggered on tall screens.
+
+Assisted-by: DeepSeek V4.1 Flash via OpenCode
+```
 
 Pull requests should include a brief summary, state whether `pnpm exec eleventy` builds cleanly, link any related issue, and include screenshots for visual, CSS, or layout changes.
 
