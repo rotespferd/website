@@ -171,7 +171,7 @@
             var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
             function update() {
-                topLink.classList.toggle("is-visible", window.scrollY > window.innerHeight);
+                topLink.classList.toggle("is-visible", window.scrollY > 300);
             }
 
             window.addEventListener("scroll", update, { passive: true });
