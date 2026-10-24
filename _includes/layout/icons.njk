@@ -1,6 +1,6 @@
 {# 16px inline icons, soft fills, decorative (aria-hidden). #}
 {% macro icon(name) %}
-<svg class="icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+<svg class="icon icon-{{ name }}" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" focusable="false">
 {% if name == "list" %}
   <rect x="1.5" y="2.5" width="13" height="11" rx="1.5" fill="#d2e3fc" stroke="#6b8fd0"/>
   <path d="M4 6h8M4 8.5h8M4 11h5" stroke="#2a64cc" stroke-width="1.2"/>
@@ -16,6 +16,16 @@
 {% elif name == "info" %}
   <circle cx="8" cy="8" r="6.5" fill="#d2e3fc" stroke="#6b8fd0"/>
   <path d="M8 7v4" stroke="#2a64cc" stroke-width="1.6"/><circle cx="8" cy="4.8" r="1" fill="#2a64cc"/>
+{% elif name == "sun" %}
+  <circle cx="8" cy="8" r="3" fill="#ffd54f" stroke="#c9961a"/>
+  <g stroke="#c9961a" stroke-width="1.2" stroke-linecap="round">
+    <line x1="8" y1="1.5" x2="8" y2="3"/><line x1="8" y1="13" x2="8" y2="14.5"/>
+    <line x1="1.5" y1="8" x2="3" y2="8"/><line x1="13" y1="8" x2="14.5" y2="8"/>
+    <line x1="3.4" y1="3.4" x2="4.5" y2="4.5"/><line x1="11.5" y1="11.5" x2="12.6" y2="12.6"/>
+    <line x1="3.4" y1="12.6" x2="4.5" y2="11.5"/><line x1="11.5" y1="4.5" x2="12.6" y2="3.4"/>
+  </g>
+{% elif name == "moon" %}
+  <path d="M12.5 9.2A5.5 5.5 0 0 1 6.8 3.5a5.5 5.5 0 1 0 5.7 5.7z" fill="#ffd54f" stroke="#c9961a"/>
 {% endif %}
 </svg>
 {% endmacro %}

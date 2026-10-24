@@ -17,7 +17,7 @@
 
 ## Interaktivität & UI
 
-- [ ] **Dark/Light-Theme-Toggle**: Button mit Mond/Sonne-SVG + `localStorage`-Persistenz (`pref-theme`) + `prefers-color-scheme`-Fallback
+- [x] **Dark/Light-Theme-Toggle**: Button mit Mond/Sonne-SVG + `localStorage`-Persistenz (`pref-theme`) + `prefers-color-scheme`-Fallback
 - [ ] **Back-to-Top-Button**: Erscheint beim Scrollen (JS), Chevron-SVG, Accesskey `g`
 
 ## Inhalte & Navigation

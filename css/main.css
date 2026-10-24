@@ -282,6 +282,45 @@ video {
 }
 
 /* 4. App layout ------------------------------------------------------------ */
+.header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Glossy pill that matches the feed link. Icon swap via data-theme. */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    padding: 0;
+    color: var(--white);
+    background: rgb(0 0 0 / 0.2);
+    border: 1px solid rgb(255 255 255 / 0.35);
+    border-radius: var(--radius-pill);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.15);
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover {
+        background: rgb(0 0 0 / 0.32);
+    }
+
+    & .icon {
+        margin: 0;
+    }
+}
+
+/* Light mode: show moon (click to go dark); dark mode: show sun (click to go light). */
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: inline; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* Hide the toggle when JS is off. */
+.no-js .theme-toggle { display: none; }
+
 .layout {
     flex: 1;
     display: grid;
@@ -1038,72 +1077,75 @@ video {
 }
 
 /* 13. Dark scheme: same palette, inverted surfaces ------------------------- */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --surface: #1b1d21;
-        --ink: #e6e6e6;
-        --ink-soft: #a9adb3;
-        --link: #8ab4f8;
-        --link-visited: #c58af9;
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface: #1b1d21;
+    --ink: #e6e6e6;
+    --ink-soft: #a9adb3;
+    --link: #8ab4f8;
+    --link-visited: #c58af9;
 
-        --chrome-100: #26292e;
-        --chrome-200: #2d3036;
-        --chrome-300: #3a3d44;
-        --border: #3f434a;
-        --border-soft: rgb(255 255 255 / 0.1);
+    --chrome-100: #26292e;
+    --chrome-200: #2d3036;
+    --chrome-300: #3a3d44;
+    --border: #3f434a;
+    --border-soft: rgb(255 255 255 / 0.1);
 
-        --sky-100: #1f2a3d;
-        --sky-200: #263650;
-        --sky-border: #3a5280;
-        --sky-ink: #aecbfa;
+    --sky-100: #1f2a3d;
+    --sky-200: #263650;
+    --sky-border: #3a5280;
+    --sky-ink: #aecbfa;
 
-        --note-bg: #4a4220;
-        --note-bg-soft: #5a4f1f;
-        --note-border: #8a7a2e;
+    --note-bg: #4a4220;
+    --note-bg-soft: #5a4f1f;
+    --note-border: #8a7a2e;
 
-        --stripes: none;
-    }
+    --stripes: none;
+}
 
-    .notice {
-        color: #fff4b3;
-    }
+:root[data-theme="light"] {
+    color-scheme: light;
+}
 
-    h1,
-    .card__title,
-    .gadget > summary,
-    .post__header {
-        text-shadow: none !important;
-    }
+[data-theme="dark"] .notice {
+    color: #fff4b3;
+}
 
-    .token.comment,
-    .token.prolog {
-        color: #9aa4b2;
-    }
+[data-theme="dark"] h1,
+[data-theme="dark"] .card__title,
+[data-theme="dark"] .gadget > summary,
+[data-theme="dark"] .post__header {
+    text-shadow: none !important;
+}
 
-    .token.keyword,
-    .token.atrule,
-    .token.selector {
-        color: #8ab4f8;
-    }
+[data-theme="dark"] .token.comment,
+[data-theme="dark"] .token.prolog {
+    color: #9aa4b2;
+}
 
-    .token.string,
-    .token.attr-value {
-        color: #81c995;
-    }
+[data-theme="dark"] .token.keyword,
+[data-theme="dark"] .token.atrule,
+[data-theme="dark"] .token.selector {
+    color: #8ab4f8;
+}
 
-    .token.number,
-    .token.boolean,
-    .token.constant {
-        color: #f28b82;
-    }
+[data-theme="dark"] .token.string,
+[data-theme="dark"] .token.attr-value {
+    color: #81c995;
+}
 
-    .token.function,
-    .token.class-name {
-        color: #d7aefb;
-    }
+[data-theme="dark"] .token.number,
+[data-theme="dark"] .token.boolean,
+[data-theme="dark"] .token.constant {
+    color: #f28b82;
+}
 
-    .token.operator,
-    .token.punctuation {
-        color: #c8ccd2;
-    }
+[data-theme="dark"] .token.function,
+[data-theme="dark"] .token.class-name {
+    color: #d7aefb;
+}
+
+[data-theme="dark"] .token.operator,
+[data-theme="dark"] .token.punctuation {
+    color: #c8ccd2;
 }

@@ -63,7 +63,14 @@
         }
         </script>
         {% endif %}
-    <script>document.documentElement.className="js"</script>
+    <script>
+    (function(){
+        var t = localStorage.getItem("pref-theme");
+        if (!t) t = matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light";
+        document.documentElement.dataset.theme = t;
+        document.documentElement.className = "js";
+    })();
+    </script>
     </head>
 
     <body>
@@ -83,7 +90,12 @@
             <div class="wrap site-header__inner">
                 {% from "layout/icons.njk" import icon %}
                 <a class="wordmark" href="/">Marians Blog<span class="badge-beta" aria-hidden="true">beta</span></a>
-                <a class="feed-link" href="/feed.xml">{{ icon("rss") }}Abonnieren</a>
+                <div class="header-actions">
+                    <button class="theme-toggle" type="button" aria-label="Theme umschalten" title="Theme umschalten">
+                        {{ icon("sun") }}{{ icon("moon") }}
+                    </button>
+                    <a class="feed-link" href="/feed.xml">{{ icon("rss") }}Abonnieren</a>
+                </div>
             </div>
         </header>
 
@@ -145,5 +157,13 @@
                 &middot; <a href="/meta/impressum">Impressum</a>
             </p>
         </footer>
+        <script>
+        document.getElementById("theme-toggle").addEventListener("click", function() {
+            var html = document.documentElement;
+            var next = html.dataset.theme === "dark" ? "light" : "dark";
+            html.dataset.theme = next;
+            localStorage.setItem("pref-theme", next);
+        });
+        </script>
     </body>
 </html>
