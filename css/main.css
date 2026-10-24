@@ -1052,6 +1052,55 @@ video {
 }
 
 
+/* 9b. Back to top: floating glossy button, JS toggles visibility. */
+.top-link {
+    position: fixed;
+    inset-block-end: 1.5rem;
+    inset-inline-end: 1.5rem;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+    color: var(--ink);
+    background-image: var(--grad-button);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    box-shadow: var(--inset-hi), var(--shadow-hover);
+    transition:
+        opacity 0.2s,
+        transform 0.2s,
+        visibility 0.2s;
+
+    &:visited {
+        color: var(--ink);
+    }
+
+    &:hover {
+        color: var(--ink);
+        text-decoration: none;
+        box-shadow: var(--inset-hi), 0 3px 8px rgb(0 0 0 / 0.3);
+    }
+
+    &:active {
+        box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.3);
+    }
+}
+
+/* Without JS the link stays visible; with JS it fades in after one screen. */
+.js .top-link {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(0.5rem);
+
+    &.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+}
+
 /* 10. AJAX-era feedback ---------------------------------------------------- */
 @keyframes highlight-fade {
     from {
