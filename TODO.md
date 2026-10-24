@@ -13,7 +13,7 @@
 
 ## Assets & Icons
 
-- [ ] **Favicons** einrichten: 16×16, 32×32, apple-touch-icon, mask-icon – Bilddateien anlegen und in `base.njk` verlinken
+- [x] **Favicons** einrichten: favicon.svg (32×32 mit blauem Gradient und "M") + apple-touch-icon in `base.njk` verlinkt
 
 ## Interaktivität & UI
 

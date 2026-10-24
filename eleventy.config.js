@@ -4,6 +4,7 @@ import syntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 export default function(eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
   eleventyConfig.addPassthroughCopy("css/main.css");
+  eleventyConfig.addPassthroughCopy("favicon.svg");
   // Article images live in assets/images/<slug>/ and are served at /images/<slug>/.
   eleventyConfig.addPassthroughCopy({ "assets/images": "images" });
 
