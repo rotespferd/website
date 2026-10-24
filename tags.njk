@@ -1,10 +1,15 @@
 ---
-layout: layout/tag.njk
-pagination:
-  data: collections.tagList
-  size: 1
-  alias: tag
-permalink: "/tags/{{ tag.slug }}/"
-eleventyComputed:
-  title: "Schlagwort: {{ tag.name }}"
+layout: layout/default.njk
+title: Themen
+permalink: /tags/
 ---
+
+<h1>Themen</h1>
+
+<div class="tag-cloud-page">
+  {% for tag in collections.tagList %}
+    <a href="/tags/{{ tag.slug }}/" class="tag-cloud-item tag-cloud-item--{{ tag.weight }}">
+      {{ tag.name }} <span class="tag-count">({{ tag.posts.length }})</span>
+    </a>
+  {% endfor %}
+</div>

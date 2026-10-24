@@ -24,4 +24,4 @@
 
 - [x] **Social-Icons auf der Homepage**: Codeberg, GitHub, Mastodon, LinkedIn als SVG-Icons im glänzenden Toolbar-Stil (Late-2000er), gespeist aus `site.profiles`
 - [ ] **UberBlogr Webring** im Footer: `← Zurück` / `Mitglied im UberBlogr Webring` / `Vor im Ring` mit Links zu `uberblogr.de`
-- [ ] **Themen-Übersichtsseite** (`/tags/`): Zentrale Liste aller Schlagwörter als Navigationspunkt „Themen" (aktuell nur Sidebar-Cloud + einzelne Tag-Seiten)
+- [x] **Themen-Übersichtsseite** (`/tags/`): Zentrale Liste aller Schlagwörter als Navigationspunkt „Themen" (aktuell nur Sidebar-Cloud + einzelne Tag-Seiten)
